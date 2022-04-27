@@ -1,5 +1,5 @@
-# google-auth-flask
-A simple web app to develop Google authentication with the help of flask-login and storing user data on PostgreSQL database hosted on a remote VM.
+# I-Placed-Portal
+One portal for placement related student experiences for IIT Bhilai.
 
 Do the following steps to run the app:
 * Add the required values to config.py
