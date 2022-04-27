@@ -1,14 +1,5 @@
 from flask import redirect, request, url_for, render_template, Response, Blueprint
 
-auth_api = Blueprint('auth_api', __name__)
-
-from flask_login import (
-    LoginManager,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
 
 from oauthlib.oauth2 import WebApplicationClient
 import requests
@@ -22,24 +13,29 @@ from core import user
 from config import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_DISCOVERY_URL
 
 
-# User session management setup
-# https://flask-login.readthedocs.io/en/latest
-login_manager = LoginManager()
-login_manager.init_app(auth_api)
-
+import json
 # OAuth 2 client setup
+from config import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_DISCOVERY_URL
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
-# Flask-Login helper to retrieve a user from our db
-# This will manage login session for user
-@login_manager.user_loader
-def load_user(user_id):
-    return user.google_user.get_user(user_id[2:len(user_id)-3])
+auth_api = Blueprint('auth_api', __name__)
 
-@auth_api.route("/")
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+
+
+
+
+
+@auth_api.route("")
 def index():
     if current_user.is_authenticated:
         return (
@@ -51,11 +47,11 @@ def index():
     else:
         return '<a class="button" href="/login">Google Login</a>'
 
-@auth_api.route("/test")
+@auth_api.route("test")
 def test():
     return render_template("login.html")
 
-@auth_api.route("/login")
+@auth_api.route("login")
 def login():
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
@@ -70,7 +66,7 @@ def login():
     )
     return redirect(request_uri)
 
-@auth_api.route("/login/callback")
+@auth_api.route("login/callback")
 def callback():
     # Get authorization code Google sent back to you
     code = request.args.get("code")
@@ -126,10 +122,10 @@ def callback():
     # Begin user session by logging the user in
     login_user(test_user)
     # Send user back to homepage
-    return redirect(url_for("index"))
+    return redirect("/")
 
-@auth_api.route("/logout")
+@auth_api.route("logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect("/")
