@@ -54,6 +54,10 @@ def search():
 def home():
     return render_template("home.html")
 
+@auth_api.route("admin")
+def admin():
+    return render_template("admin.html")
+
 
 @auth_api.route("login")
 def login():
