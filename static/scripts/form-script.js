@@ -15,6 +15,7 @@ var companies = ['Amazon', 'Microsoft', 'Flipkart', 'Google', 'Adobe', 'Samsung'
 
 var list = document.getElementById('companyName');
 
+
 companies.forEach(function (item) {
     var option = document.createElement('option');
     option.value = item;
@@ -31,12 +32,6 @@ function logoutUser() {
         console.log(error);
     });
 }
-
-document.getElementById("logOut").addEventListener("click", function () {
-    logoutUser();
-    setTimeout(function () {
-    }, 2000);
-})
 
 let roundNumber = 1
 let questionNumber = 1
@@ -68,7 +63,7 @@ document.getElementById("submit").addEventListener('click', function () {
 
     document.getElementById("submit").style.display = "none";
     document.getElementById("spinner").style.display = "block";
-    postData()
+    postData();
 });
 
 const questionHtml = (questionNumber) => `
@@ -189,14 +184,13 @@ function giveJson() {
 }
 
 const postData = () => {
-
-    //call api addExp on giveJson() functino
-    console.log(giveJson());
-    console.log("Call addExp api and save to DB :)");
-    alert("submitted");
+    //call api addExp on giveJson() function
+    console.log(giveJson())
+    console.log("Call addExp api and save to DB :)")
+    alert("submitted yoyo")
     setTimeout(function () {
-        window.location = "index.html";
-    }, 2000);
+        window.location = "home";
+    }, 2000)
 }
 
 

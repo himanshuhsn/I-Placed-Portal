@@ -1,9 +1,4 @@
 
-document.getElementById("logOut").addEventListener("click", function () {
-    logoutUser();
-    setTimeout(function () {
-    }, 2000);
-})
 function logoutUser() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
@@ -84,6 +79,17 @@ function removeAllChildNodes(parent) {
     }
 }
 
+function runPyScript(input){
+    var jqXHR = $.ajax({
+        type: "POST",
+        url: "/search",
+        async: false,
+        data: { mydata: input }
+    });
+
+    return jqXHR.responseText;
+}
+
 
 const getData = () => {
     topicTags = [];
@@ -100,6 +106,7 @@ const getData = () => {
     }
     console.log(topicTags);
     console.log(companyTags);
+
     
     //call api search and return data
 
