@@ -1,12 +1,17 @@
+function userLoggedIn() {
+    return true
+}
 
-function logoutUser() {
-    firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-        console.log("logout ")
-    }).catch((error) => {
-        // An error happened.
-        console.log(error);
-    });
+function isAdmin() {
+    return true
+}
+
+if (userLoggedIn()) {
+    document.getElementById("/logOut").style.display = "block"
+}
+
+if (isAdmin()) {
+    document.getElementById("/admin").style.display = "block"
 }
 
 
@@ -79,16 +84,6 @@ function removeAllChildNodes(parent) {
     }
 }
 
-function runPyScript(input){
-    var jqXHR = $.ajax({
-        type: "POST",
-        url: "/search",
-        async: false,
-        data: { mydata: input }
-    });
-
-    return jqXHR.responseText;
-}
 
 
 const getData = () => {
@@ -107,7 +102,7 @@ const getData = () => {
     console.log(topicTags);
     console.log(companyTags);
 
-    
+
     //call api search and return data
 
     let s = 1;

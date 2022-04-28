@@ -107,13 +107,15 @@ class Blog(db.Model):
     timestamp = db.Column(db.Integer)
     status = db.Column(db.Enum("A","U",name='approval_status'))
     tags = db.Column(db.ARRAY(db.TEXT))
+    feedback = db.Column(db.TEXT)
 
-    def __init__(self, id, level, article, timestamp, status):
+    def __init__(self, id, level, article, timestamp, status, feedback):
         self.id = id
         self.level = level
         self.article = article
         self.timestamp = timestamp
         self.status = status
+        self.feedback = feedback
 
     def serialize(self):
         return {
@@ -121,7 +123,8 @@ class Blog(db.Model):
             'level': self.level,
             'article': self.article,
             'timestamp': self.timestamp,
-            'status': self.status
+            'status': self.status,
+            'feedback': self.feedback
         }
 
 class User_Company_Blog(db.Model):

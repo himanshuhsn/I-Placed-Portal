@@ -1,16 +1,18 @@
-function logoutUser() {
-    firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-        console.log("logout ")
-    }).catch((error) => {
-        // An error happened.
-        console.log(error);
-    });
+function userLoggedIn() {
+    return true
 }
 
+function isAdmin() {
+    return true
+}
 
+if (userLoggedIn()) {
+    document.getElementById("/logOut").style.display = "block"
+}
 
-
+if (isAdmin()) {
+    document.getElementById("/admin").style.display = "block"
+}
 
 const blogHtml = (blog, num, roundData) => `
 <div class="card border-secondary mb-3">
@@ -77,17 +79,8 @@ function createBlob(blogData, blogNumber) {
 let datas = []
 
 const getData = () => {
-    // db.collection("experienceBlog").get().then(qs => {
-    //     qs.forEach(doc => datas.push(doc.data()))
-    //     for (let i = 0; i < datas.length; i++) {
-    //         const ele = document.getElementById('blogs');
-    //         ele.appendChild(createBlob(datas[i], i + 1));
-    //         // console.log(ele.innerHTML)
-    //     }
-    // })
-    // call from viewExp()
 
-    url ='https://127.0.0.1:5000/experience/view';
+    url = 'https://127.0.0.1:5000/experience/view';
     fetch(url)
         .then(response => response.json())
         .then(data => console.log(data));

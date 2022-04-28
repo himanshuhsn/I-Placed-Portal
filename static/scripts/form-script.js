@@ -1,14 +1,17 @@
-// document.getElementById("form").style.display = "none";
+function userLoggedIn() {
+    return true
+}
 
+function isAdmin() {
+    return true
+}
 
-function logoutUser() {
-    firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-        console.log("logout ")
-    }).catch((error) => {
-        // An error happened.
-        console.log(error);
-    });
+if (userLoggedIn()) {
+    document.getElementById("/logOut").style.display = "block"
+}
+
+if (isAdmin()) {
+    document.getElementById("/admin").style.display = "block"
 }
 
 var companies = ['Amazon', 'Microsoft', 'Flipkart', 'Google', 'Adobe', 'Samsung', 'Accolite', 'MakeMyTrip', 'Snapdeal', 'Paytm', 'Zoho', 'Walmart', 'Morgan Stanley', 'OYO Rooms', 'Goldman Sachs', 'FactSet', 'D-E-Shaw', 'SAP Labs', 'Ola Cabs', 'Hike', 'MAQ Software', 'Oracle', 'VMWare', 'Qualcomm', 'Intuit ', 'Cisco', 'Facebook', 'Visa', 'Directi', 'Linkedin', 'Payu', 'Yahoo', 'Wipro', 'Yatra.com', 'Belzabar', 'Salesforce', 'Housing.com', 'Teradata', 'Synopsys', 'BankBazaar', 'Codenation', 'Citrix', 'Mahindra Comviva', 'TCS', 'InMobi', '24*7 Innovation Labs', 'One97', 'Apple', 'Times Internet', 'Twitter', 'Veritas', 'PayPal', 'Tejas Network', 'Boomerang Commerce', 'Groupon', 'Nutanix', 'Brocade', 'InfoEdge', 'Myntra', 'ABCO', 'CouponDunia', 'Cognizant ', 'Atlassian', 'Lybrate', 'Amdocs', 'IgniteWorld ', 'OATS Systems', 'United Health Group', 'Opera', 'Oxigen Wallet', 'Juniper Networks', 'Nagarro', 'Quikr', 'Rockstand', 'TinyOwl', 'GreyOrange ', 'Streamoid Technologies', 'Infosys', 'MetLife', 'Moonfrog Labs', 'Philips', 'Drishti-Soft', 'GE', 'PropTiger', 'Polycom', 'Kritikal Solutions', 'Media.net ', 'BrowserStack', 'Zillious', 'Fab.com', 'Accenture', 'IBM', 'CarWale', 'Cadence India', 'Epic Systems', 'Grofers', 'Nvidia', 'Wooker', 'Monotype Solutions', 'Arcesium', 'Bloomberg', 'nearbuy', 'Sapient', 'Xome', 'Expedia', 'Tesco', 'Airtel', 'Citicorp', 'eBay', 'Netskope ', 'Kuliza', 'DE Shaw', 'Swiggy', 'Dell', 'Infinera', 'PlaySimple', 'Rivigo', 'Intel', 'Pubmatic', 'Vizury Interactive Solutions', 'Zycus', 'Jabong', 'Informatica', 'Unisys', 'Sprinklr', 'Medlife', 'Dunzo', 'Mobicip', 'Dailyhunt', 'National Instruments', 'Komli Media', 'Target Corporation', 'Junglee Games', 'Taxi4Sure', 'HSBC', 'Service Now', 'HCL', 'FreeCharge', 'Mallow Technologies', 'CGI', 'Zopper', 'redBus', 'KLA Tencor', 'Open Solutions', 'American Express', 'Practo', 'Bidgely', 'Uber', 'Yodlee Infotech', 'Code Brew', 'Cavisson System', 'HunanAsset', 'Motlay', 'Zomato', 'Freshokartz', 'Huawei', 'Knowlarity', 'LTI', 'L&T', 'Infosys', 'Others', 'ICICI Bank', 'Toppr', 'Truminds', 'Radisys'];
@@ -195,5 +198,4 @@ const postData = () => {
 
 
 
-    
-            
+
