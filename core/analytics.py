@@ -195,5 +195,5 @@ if __name__ == "__main__":
     # store_difficulty_level_data()
     print(fetch_topic_frequency_data())
     print(fetch_company_selection_frequency_data())
-    print(fetch_difficulty_level_data())
     print(fetch_cgpa_company_data())
+    print(fetch_difficulty_level_data())

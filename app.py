@@ -26,10 +26,14 @@ login_manager.init_app(app)
 def load_user(user_id):
     return user.google_user.get_user(user_id[2:len(user_id)-3])
 
+
 from route.auth_route import auth_api as auth_blueprint
-# add more route here
+from route.analytics_route import analytics_api as analytics_blueprint
+from route.experience_route import experience_api as experience_blueprint
+
 app.register_blueprint(auth_blueprint, url_prefix='/')
-# register more blueprint here
+app.register_blueprint(analytics_blueprint, url_prefix='/analytics')
+app.register_blueprint(analytics_blueprint, url_prefix='/experience')
 
 # Database setup
 from config import USER, PASSWORD, HOST, PORT, DATABASE

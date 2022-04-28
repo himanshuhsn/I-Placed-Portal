@@ -1,4 +1,3 @@
-from enum import unique
 from utils import keygenerator
 
 from model.model import Login_Data
