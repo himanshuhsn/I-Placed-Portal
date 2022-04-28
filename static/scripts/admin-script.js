@@ -1,30 +1,54 @@
-// function logoutUser() {
-//     return true
-// }
-
-// document.getElementById("logOut").addEventListener("click", function () {
-//     logoutUser();
-//     setTimeout(function () {
-//         window.location = "index.html";
-//     }, 2000);
-// })
-function userLoggedIn() {
-    return true
+async function userLoggedIn() {
+    let url = 'https://127.0.0.1:5000/loggedIn';
+    let loginStatus = false;
+    try {
+        let response = await fetch(url)
+        loginStatus = (await response.json()).status;
+    } catch (error) {
+        console.log(error)
+    }
+    console.log(loginStatus)
+    return loginStatus
 }
 
 function isAdmin() {
-    return true
+    return false
 }
 
-if (userLoggedIn()) {
-    document.getElementById("/logOut").style.display = "block"
+async function startup() {
+    if (await userLoggedIn()) {
+        // console.log("ASDAS", userLoggedIn())
+        document.getElementById("/logOut").style.display = "block"
+    }
+
+    if (isAdmin()) {
+        document.getElementById("/admin").style.display = "block"
+    }
+
+}
+startup()
+
+document.getElementById("logout").addEventListener("click", function () {
+    doLogOut()
+});
+
+function doLogOut() {
+    const url = 'https://127.0.0.1:5000/logout'
+    window.location.href = url;
+}
+async function startup() {
+    if (await userLoggedIn()) {
+        // console.log("ASDAS", userLoggedIn())
+        document.getElementById("/logOut").style.display = "block"
+    }
+
+    if (isAdmin()) {
+        document.getElementById("/admin").style.display = "block"
+    }
+
 }
 
-if (isAdmin()) {
-    document.getElementById("/admin").style.display = "block"
-}
-
-
+startup();
 const blogHtml = (blog, num, roundData) => `
 <div class="card border-secondary mb-3">
 <div class="card-header bg-primary text-white border-secondary"><b>${blog.company} on campus experience</b></div>

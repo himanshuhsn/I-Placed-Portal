@@ -1,3 +1,36 @@
+async function userLoggedIn() {
+    let url = 'https://127.0.0.1:5000/loggedIn';
+    let loginStatus = false;
+    try {
+        let response = await fetch(url)
+        loginStatus = (await response.json()).status;
+    } catch (error) {
+        console.log(error)
+    }
+    console.log(loginStatus)
+    return loginStatus
+}
+
+function isAdmin() {
+    return false
+}
+
+async function startup() {
+    if (await userLoggedIn()) {
+        // console.log("ASDAS", userLoggedIn())
+        document.getElementById("/logOut").style.display = "block"
+        document.getElementById("notlogin").style.display = "none"
+        document.getElementById("logon").style.display = "block"
+    }
+
+    if (isAdmin()) {
+        document.getElementById("/admin").style.display = "block"
+    }
+
+}
+
+startup()
+
 document.getElementById("login").addEventListener("click", function () {
     doLogin()
 });
@@ -6,11 +39,14 @@ function doLogin() {
     document.getElementById("spinner").style.display = "block";
     // add API for login here, do redirect 
     const url = 'https://127.0.0.1:5000/login'
-    fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            console.log(json);
-            document.getElementById("demo").innerHTML = JSON.stringify(json)
-        })
-    document.getElementById("loginScreen").style.display = "none";
+    window.location.href = url;
+}
+
+document.getElementById("logout").addEventListener("click", function () {
+    doLogOut()
+});
+
+function doLogOut() {
+    const url = 'https://127.0.0.1:5000/logout'
+    window.location.href = url;
 }

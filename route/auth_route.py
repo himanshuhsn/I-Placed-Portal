@@ -2,6 +2,7 @@ from flask import redirect, request, render_template, Blueprint
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 import json
+from core.experience import check_admin 
 
 # Internal imports
 from core import user
@@ -19,42 +20,52 @@ from flask_login import (
     logout_user,
 )
 
+@auth_api.route("loggedIn")
+def is_logged_in():
+    return {"status" : current_user.is_authenticated}
+
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
 @auth_api.route("")
 def index():
-    if current_user.is_authenticated:
-        return (
-            "<p>Hello, {}! You're logged in! Email: {}</p>"
-            '<a class="button" href="/logout">Logout</a>'.format(
-                current_user.name, current_user.email
-            )
-        )
-    else:
-        return '<a class="button" href="/login">Google Login</a>'
-
-@auth_api.route("test")
-def test():
     return render_template("index.html")
+    # if current_user.is_authenticated:
+    #     return (
+    #         "<p>Hello, {}! You're logged in! Email: {}</p>"
+    #         '<a class="button" href="/logout">Logout</a>'.format(
+    #             current_user.name, current_user.email
+    #         )
+    #     )
+    # else:
+    #     return '<a class="button" href="/login">Google Login</a>'
+
+# @auth_api.route("test")
+# def test():
+#     return render_template("index.html")
 
 @auth_api.route("analytics")
+@login_required
 def analytics():
     return render_template("analytics.html")
 
 @auth_api.route("experience")
+@login_required
 def experience():
     return render_template("form.html")
 
 @auth_api.route("search")
+@login_required
 def search():
     return render_template("search.html")
 
 @auth_api.route("home")
+@login_required
 def home():
     return render_template("home.html")
 
 @auth_api.route("admin")
+@login_required
 def admin():
     return render_template("admin.html")
 

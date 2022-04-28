@@ -14,8 +14,12 @@ from utils.keygenerator import KeyGenerator
 
 keyGen = KeyGenerator()
 
-engine = db.create_engine(SQLALCHEMY_DATABASE_URI)
+engine = db.create_engine(SQLALCHEMY_DATABASE_URI,{})
 ts = time.time()
+
+def check_admin(user_id):
+    sql = text("SELECT admin FROM user_data WHERE id = :x")
+    return engine.execute(sql, x = user_id)
 
 
 def addExp(formData):
