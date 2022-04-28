@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title_block %}Home{% endblock %}
+{% block body_block %}
+<div class="top-content">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-12 text wow fadeInLeft">
+				<div class="description">
+					<br><br><br><br><br>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- Features -->
+<div class="features-container section-container">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-12 features section-description wow fadeIn">
+				<h2>Welcome to I Placed Portal</h2>
+				<div class="description">
+					<p class="medium-paragraph">
+						One place for all placement related experience data, please login using your IIT Bhilai
+						gmail Id to continue.
+					</p>
+				</div>
+				<div class="d-flex justify-content-center">
+					<div class="row" id="loginScreen">
+						<div class="col-md-12 text-center">
+							<button href=index.html id="login" class="btn btn-outline-dark" role="button"
+								style="text-transform:none">
+								<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+									src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+								Login with Google
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 features-box wow fadeInLeft">
+				<div class="row">
+					<div class="col-sm-3 features-box-icon">
+						<i class="fa fa-eye"></i>
+					</div>
+					<div class="col-sm-9">
+						<h3>View experience Blogs</h3>
+						<p>
+							View all experience related data here in one place.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 features-box wow fadeInLeft">
+				<div class="row">
+					<div class="col-sm-3 features-box-icon">
+						<i class="fa fa-search"></i>
+					</div>
+					<div class="col-sm-9">
+						<h3>Search experience Blogs</h3>
+						<p>
+							Search experience blogs using company and topic tags.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6 features-box wow fadeInLeft">
+				<div class="row">
+					<div class="col-sm-3 features-box-icon">
+						<i class="fa fa-plus-circle"></i>
+					</div>
+					<div class="col-sm-9">
+						<h3>Add experience Blogs</h3>
+						<p>
+							Add your placement experience to help build a strong community.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 features-box wow fadeInLeft">
+				<div class="row">
+					<div class="col-sm-3 features-box-icon">
+						<i class="fa fa-bar-chart"></i>
+					</div>
+					<div class="col-sm-9">
+						<h3>Analyze Data</h3>
+						<p>
+							Analyze past placement statistics and plots.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<script src="/static/scripts/home-script.js"></script>
+{% endblock %}

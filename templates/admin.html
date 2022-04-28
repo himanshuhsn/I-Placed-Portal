@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Roboto:300,400,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <!-- Favicon and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<body>
+
+    <!-- Top menu -->
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <!-- Navbar content -->
+    </nav>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="navbar-logo-custom"><a href="index.html">I Placed Portal</a></li>
+                </ul>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#top-navbar-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="top-navbar-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Add experience</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="admin.html">Dashboard</a></li>
+                    <li><a id="logOut">Log Out </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="features-container section-container">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12 features section-description wow fadeIn">
+                    <div class="col-sm-6 features-box wow fadeInLeft">
+                        <div class="row">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header bg-primary text-white border-secondary"><b>${blog.company} on
+                                        campus experience</b></div>
+                                <div class="card-body bg-light">
+                                    <h6 class="card-title text-secondary">Candidate Name: <b>${blog.firstName}
+                                            ${blog.lastName}</b></h6>
+                                    <p class="card-text text-danger">Topics: ${blog.tags}.</p>
+                                    <p class="card-text text-success">Status : ${blog.status} <br> Difficulty:
+                                        ${blog.level}.</p>
+                                    <button id="btn-${num}" type="button" class="btn btn-secondary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">View More</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Approve</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Deny </button>
+                                    <div class="modal fade scrollable" id="exampleModal-${num}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="exampleModalLabel"><b>${blog.company} on
+                                                            campus experience</b></h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Candidate Name: ${blog.firstName} ${blog.lastName}</h5>
+                                                    <b>Batch of: </b>${blog.batch}<br>
+                                                    <!-- <script>
+                                                        for (let k = 0; k < roundData.length; k++) {
+                                                            roundData[k]
+                                                        }
+                                                    </script> -->
+                                                    <b>Round Information: <br></b>${roundData}<br>
+                                                    <b>Feedback: </b>${blog.feedback}<br>
+                                                    <b>Topics: </b>${blog.tags}<br>
+                                                    <b>Status : </b>${blog.status} <br>
+                                                    <b>Difficulty: </b>${blog.level}<br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 features-box wow fadeInLeft">
+                        <div class="row">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header bg-primary text-white border-secondary"><b>${blog.company} on
+                                        campus experience</b></div>
+                                <div class="card-body bg-light">
+                                    <h6 class="card-title text-secondary">Candidate Name: <b>${blog.firstName}
+                                            ${blog.lastName}</b></h6>
+                                    <p class="card-text text-danger">Topics: ${blog.tags}.</p>
+                                    <p class="card-text text-success">Status : ${blog.status} <br> Difficulty:
+                                        ${blog.level}.</p>
+                                    <button id="btn-${num}" type="button" class="btn btn-secondary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">View More</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Approve</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Deny </button>
+                                    <div class="modal fade scrollable" id="exampleModal-${num}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="exampleModalLabel"><b>${blog.company} on
+                                                            campus experience</b></h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Candidate Name: ${blog.firstName} ${blog.lastName}</h5>
+                                                    <b>Batch of: </b>${blog.batch}<br>
+                                                    <!-- <script>
+                                                        for (let k = 0; k < roundData.length; k++) {
+                                                            roundData[k]
+                                                        }
+                                                    </script> -->
+                                                    <b>Round Information: <br></b>${roundData}<br>
+                                                    <b>Feedback: </b>${blog.feedback}<br>
+                                                    <b>Topics: </b>${blog.tags}<br>
+                                                    <b>Status : </b>${blog.status} <br>
+                                                    <b>Difficulty: </b>${blog.level}<br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 features-box wow fadeInLeft">
+                        <div class="row">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header bg-primary text-white border-secondary"><b>${blog.company} on
+                                        campus experience</b></div>
+                                <div class="card-body bg-light">
+                                    <h6 class="card-title text-secondary">Candidate Name: <b>${blog.firstName}
+                                            ${blog.lastName}</b></h6>
+                                    <p class="card-text text-danger">Topics: ${blog.tags}.</p>
+                                    <p class="card-text text-success">Status : ${blog.status} <br> Difficulty:
+                                        ${blog.level}.</p>
+                                    <button id="btn-${num}" type="button" class="btn btn-secondary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">View More</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Approve</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Deny </button>
+                                    <div class="modal fade scrollable" id="exampleModal-${num}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="exampleModalLabel"><b>${blog.company} on
+                                                            campus experience</b></h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Candidate Name: ${blog.firstName} ${blog.lastName}</h5>
+                                                    <b>Batch of: </b>${blog.batch}<br>
+                                                    <!-- <script>
+                                                        for (let k = 0; k < roundData.length; k++) {
+                                                            roundData[k]
+                                                        }
+                                                    </script> -->
+                                                    <b>Round Information: <br></b>${roundData}<br>
+                                                    <b>Feedback: </b>${blog.feedback}<br>
+                                                    <b>Topics: </b>${blog.tags}<br>
+                                                    <b>Status : </b>${blog.status} <br>
+                                                    <b>Difficulty: </b>${blog.level}<br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 features-box wow fadeInLeft">
+                        <div class="row">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header bg-primary text-white border-secondary"><b>${blog.company} on
+                                        campus experience</b></div>
+                                <div class="card-body bg-light">
+                                    <h6 class="card-title text-secondary">Candidate Name: <b>${blog.firstName}
+                                            ${blog.lastName}</b></h6>
+                                    <p class="card-text text-danger">Topics: ${blog.tags}.</p>
+                                    <p class="card-text text-success">Status : ${blog.status} <br> Difficulty:
+                                        ${blog.level}.</p>
+                                    <button id="btn-${num}" type="button" class="btn btn-secondary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">View More</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Approve</button>
+                                    <button id="btn-${num}" type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#exampleModal-${num}   ">Deny </button>
+                                    <div class="modal fade scrollable" id="exampleModal-${num}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="exampleModalLabel"><b>${blog.company} on
+                                                            campus experience</b></h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Candidate Name: ${blog.firstName} ${blog.lastName}</h5>
+                                                    <b>Batch of: </b>${blog.batch}<br>
+                                                    <!-- <script>
+                                                        for (let k = 0; k < roundData.length; k++) {
+                                                            roundData[k]
+                                                        }
+                                                    </script> -->
+                                                    <b>Round Information: <br></b>${roundData}<br>
+                                                    <b>Feedback: </b>${blog.feedback}<br>
+                                                    <b>Topics: </b>${blog.tags}<br>
+                                                    <b>Status : </b>${blog.status} <br>
+                                                    <b>Difficulty: </b>${blog.level}<br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="col-sm-12 footer">
+            <p>Made with
+                <i class="fa fa-heart"></i>
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- Javascript -->
+    <script src="scripts/admin-script.js"></script>
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.backstretch.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/retina-1.1.0.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+</body>
+
+</html>

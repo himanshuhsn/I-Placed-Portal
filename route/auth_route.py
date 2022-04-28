@@ -36,7 +36,11 @@ def index():
 
 @auth_api.route("test")
 def test():
-    return render_template("login.html")
+    return render_template("index.html")
+
+@auth_api.route("analytics")
+def analytics():
+    return render_template("analytics.html")
 
 @auth_api.route("login")
 def login():

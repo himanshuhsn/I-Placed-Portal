@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title_block %}Analytics{% endblock %}
+{% block body_block %}
+<br>
+<div class="d-flex justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Frequency of topics asked</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="plot-1" style="min-width:300px;height:250px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Total Student placed by company</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="plot-2" style="width:500px;height:250px;"></div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Average cgpa of students placed company wise</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="plot-3" style="width:500px;height:250px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Difficulty Level Of Interviews</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="plot-4" style="width:600px;height:250px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<script src="/static/scripts/plotly-2.11.1.min.js"></script>
+<script src="/static/scripts/analytics-script.js"></script>
+{% endblock %}
