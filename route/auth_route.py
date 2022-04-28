@@ -1,39 +1,26 @@
-from flask import redirect, request, url_for, render_template, Response, Blueprint
-
-
+from flask import redirect, request, render_template, Blueprint
 from oauthlib.oauth2 import WebApplicationClient
 import requests
-
-# from __main__ import app
+import json
 
 # Internal imports
 from core import user
 
-# Configuration
-from config import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_DISCOVERY_URL
+auth_api = Blueprint('auth_api', __name__)
 
-
-import json
 # OAuth 2 client setup
 from config import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_DISCOVERY_URL
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
-def get_google_provider_cfg():
-    return requests.get(GOOGLE_DISCOVERY_URL).json()
-
-auth_api = Blueprint('auth_api', __name__)
-
 from flask_login import (
-    LoginManager,
     current_user,
     login_required,
     login_user,
     logout_user,
 )
 
-
-
-
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
 
 @auth_api.route("")
 def index():
@@ -107,7 +94,7 @@ def callback():
         return "User email not available or not verified by Google.", 400
     # Create a user in your db with the information provided
     # by Google
-    print(unique_id, users_email, users_name)
+    # print(unique_id, users_email, users_name)
 
     # Doesn't exist? Add it to the database.
     if not user.google_user.get_user(unique_id):

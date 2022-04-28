@@ -6,39 +6,19 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
-from flask_login import (
-    LoginManager,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
-
-from oauthlib.oauth2 import WebApplicationClient
-import requests
-
-# from __main__ import app
-
-from route.auth_route import auth_api as auth_blueprint
-# add more route here
+# Internal imports
+from core import user
 
 # Flask app setup
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 
-# Internal imports
-from core import user
-
-# Configuration
-from config import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_DISCOVERY_URL
-
 # User session management setup
 # https://flask-login.readthedocs.io/en/latest
 login_manager = LoginManager()
 login_manager.init_app(app)
-
-
 
 # Flask-Login helper to retrieve a user from our db
 # This will manage login session for user
@@ -46,7 +26,8 @@ login_manager.init_app(app)
 def load_user(user_id):
     return user.google_user.get_user(user_id[2:len(user_id)-3])
 
-
+from route.auth_route import auth_api as auth_blueprint
+# add more route here
 app.register_blueprint(auth_blueprint, url_prefix='/')
 # register more blueprint here
 
