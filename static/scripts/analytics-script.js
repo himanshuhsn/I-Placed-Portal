@@ -1,3 +1,19 @@
+function userLoggedIn() {
+    return true
+}
+
+function isAdmin() {
+    return true
+}
+
+if (userLoggedIn()) {
+    document.getElementById("/logOut").style.display = "block"
+}
+
+if (isAdmin()) {
+    document.getElementById("/admin").style.display = "block"
+}
+
 var trace1 = {
     x: ["DSA", "Linked List", "Arrays", "DP", "DSA1", "Linked List1", "Arrays1", "DP1", "DSA2", "Linked List2", "Arrays2", "DP2"],
     y: [10, 15, 13, 17, 10, 15, 13, 17, 10, 15, 13, 17],

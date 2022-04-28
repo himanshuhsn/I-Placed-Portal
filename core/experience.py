@@ -9,6 +9,7 @@ from model.model import SQLALCHEMY_DATABASE_URI
 from model.model import db
 from model.model import Blog, Company, Login_Data, User_Company_Blog, User
 from utils.keygenerator import KeyGenerator 
+import json
 
 keyGen = KeyGenerator()
 
@@ -135,7 +136,7 @@ def viewExp():
         ans = []
         for row in tuple:
             ans.append(object_as_dict(row))
-        return ans
+        return ans 
     except Exception as e:
         return(str(e))
 

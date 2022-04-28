@@ -3,6 +3,15 @@
 	height: 15%;
 }
 
+.btn-circle.btn-sm {
+	width: 30px;
+	height: 30px;
+	padding: 6px 0px;
+	border-radius: 15px;
+	font-size: 8px;
+	text-align: center;
+}
+
 .navbar-logo-custom {
 	font-size: 25px;
 	font-weight: 500;
