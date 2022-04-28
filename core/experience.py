@@ -8,12 +8,13 @@ from sqlalchemy.sql import text
 from model.model import SQLALCHEMY_DATABASE_URI
 from model.model import db
 from model.model import Blog, Company, Login_Data, User_Company_Blog, User
+#from route.experience_route import view
 from utils.keygenerator import KeyGenerator 
-import json
+
 
 keyGen = KeyGenerator()
 
-engine = db.create_engine(SQLALCHEMY_DATABASE_URI,{})
+engine = db.create_engine(SQLALCHEMY_DATABASE_URI)
 ts = time.time()
 
 
@@ -85,7 +86,7 @@ def addExp(formData):
                 timestamp = time.time(),
                 status = _status,
                 tags = _tags,
-                # feedback = _feedback
+                feedback = _feedback
         )
         db.session.add(new_blog)
         db.session.commit()
@@ -132,10 +133,14 @@ def companyExists(_name):
 
 def viewExp():
     try:
-        tuple = User_Company_Blog.query.filter_by(status="A").order_by(User_Company_Blog.timestamp.desc()).limit(15).all()
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.key, user_data.admin, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
+"from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
+" inner join company on company.id = user_company_blog.company_id "+
+" inner join blog on blog.id = user_company_blog.blog_id")
+        results = engine.execute(sql)
         ans = []
-        for row in tuple:
-            ans.append(object_as_dict(row))
+        for item in results:
+            ans.append(item)
         return ans 
     except Exception as e:
         return(str(e))
@@ -147,7 +152,7 @@ def intersection(lst1, lst2):
     return True
 def search(tags_list,company_list=None):
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.key, user_data.admin, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags "+
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.key, user_data.admin, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
 " inner join blog on blog.id = user_company_blog.blog_id")
@@ -212,15 +217,3 @@ def deny(_id,login_id):
 def object_as_dict(obj):
     return {c.key: getattr(obj, c.key)
             for c in inspect(obj).mapper.column_attrs}
-
-def dict_to_string(dict):
-    ans = ""
-    for item in dict:
-        ans=ans+str(item)+"\n"
-    return ans
-
-formData = {
-    "roundData":[["hoo"],["boo"]], "level":5,"firstName":"test",
-"lastName":"test","email":"p@a.com","batch":2018,"company":"test",
-"feedback":"test","status":"U","tags":["hashmap","linkedlist"],"cgpa":9
-}

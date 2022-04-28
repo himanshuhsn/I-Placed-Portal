@@ -8,7 +8,7 @@ class KeyGenerator:
         self.key = secrets.token_urlsafe(length)
 
     def getKey(self) -> str:
-        self.generateKey(32)
+        self.generateKey(10)
         return self.key
 
 if __name__ == '__main__':
