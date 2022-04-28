@@ -42,6 +42,19 @@ def test():
 def analytics():
     return render_template("analytics.html")
 
+@auth_api.route("experience")
+def experience():
+    return render_template("form.html")
+
+@auth_api.route("search")
+def search():
+    return render_template("search.html")
+
+@auth_api.route("home")
+def home():
+    return render_template("home.html")
+
+
 @auth_api.route("login")
 def login():
     # Find out what URL to hit for Google login

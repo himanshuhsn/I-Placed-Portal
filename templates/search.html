@@ -1,115 +1,57 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
-    <link type="text/css" rel="bootstrap-tagsinput.css">
-    <title>Form</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="homr.html">I Placed Portal</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="search.html">Search <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="form.html">Add Experience <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="analytics.html">Analytics <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-left">
-                <li class="nav-item active">
-                    <a class="nav-link" id="logOut" style="display: none;">Log Out <span
-                            class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <br>
-    <div class="container" style="max-width: 1200px;">
-        <form id="form"  action="javascript:void(0);" class='card p-3 bg-light'>
-            <div class="d-flex justify-content-center">
-                <div id="getTopic">
-                    <h5>Add Topic Tags</h5>
-                    <multi-input id="topicTags" class="text-center">
-                        <input list="topics">
-                        <datalist id="topics">
-                        </datalist>
-                    </multi-input>
-                    <hr>
-                    <h5>Add Company Tags</h5>
-                    <multi-input id="companyTag" class="text-center">
-                        <input list="companies">
-                        <datalist id="companies">
-                        </datalist>
-                    </multi-input>
-                    <hr>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" id="submit" class="btn btn-primary btn-lg">Search</button>
-                    </div>
+{% extends "base.html" %}
+{% block title_block %}Search{% endblock %}
+{% block body_block %}
+<div class="container" style="max-width: 1200px;">
+    <form id="form" action="javascript:void(0);" class='card p-3 bg-light'>
+        <div class="d-flex justify-content-center">
+            <div id="getTopic">
+                <h5>Add Topic Tags</h5>
+                <multi-input id="topicTags" class="text-center">
+                    <input list="topics">
+                    <datalist id="topics">
+                    </datalist>
+                </multi-input>
+                <hr>
+                <h5>Add Company Tags</h5>
+                <multi-input id="companyTag" class="text-center">
+                    <input list="companies">
+                    <datalist id="companies">
+                    </datalist>
+                </multi-input>
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" id="submit" class="btn btn-primary btn-lg">Search</button>
                 </div>
             </div>
-            <hr>
-            <div class="row" id="blogs">
-            </div>
-    </div>
-    <script>
-        var companiesName = ['Amazon', 'Microsoft', 'Flipkart', 'Google', 'Adobe', 'Samsung', 'Accolite', 'MakeMyTrip', 'Snapdeal', 'Paytm', 'Zoho', 'Walmart', 'Morgan Stanley', 'OYO Rooms', 'Goldman Sachs', 'FactSet', 'D-E-Shaw', 'SAP Labs', 'Ola Cabs', 'Hike', 'MAQ Software', 'Oracle', 'VMWare', 'Qualcomm', 'Intuit ', 'Cisco', 'Facebook', 'Visa', 'Directi', 'Linkedin', 'Payu', 'Yahoo', 'Wipro', 'Yatra.com', 'Belzabar', 'Salesforce', 'Housing.com', 'Teradata', 'Synopsys', 'BankBazaar', 'Codenation', 'Citrix', 'Mahindra Comviva', 'TCS', 'InMobi', '24*7 Innovation Labs', 'One97', 'Apple', 'Times Internet', 'Twitter', 'Veritas', 'PayPal', 'Tejas Network', 'Boomerang Commerce', 'Groupon', 'Nutanix', 'Brocade', 'InfoEdge', 'Myntra', 'ABCO', 'CouponDunia', 'Cognizant ', 'Atlassian', 'Lybrate', 'Amdocs', 'IgniteWorld ', 'OATS Systems', 'United Health Group', 'Opera', 'Oxigen Wallet', 'Juniper Networks', 'Nagarro', 'Quikr', 'Rockstand', 'TinyOwl', 'GreyOrange ', 'Streamoid Technologies', 'Infosys', 'MetLife', 'Moonfrog Labs', 'Philips', 'Drishti-Soft', 'GE', 'PropTiger', 'Polycom', 'Kritikal Solutions', 'Media.net ', 'BrowserStack', 'Zillious', 'Fab.com', 'Accenture', 'IBM', 'CarWale', 'Cadence India', 'Epic Systems', 'Grofers', 'Nvidia', 'Wooker', 'Monotype Solutions', 'Arcesium', 'Bloomberg', 'nearbuy', 'Sapient', 'Xome', 'Expedia', 'Tesco', 'Airtel', 'Citicorp', 'eBay', 'Netskope ', 'Kuliza', 'DE Shaw', 'Swiggy', 'Dell', 'Infinera', 'PlaySimple', 'Rivigo', 'Intel', 'Pubmatic', 'Vizury Interactive Solutions', 'Zycus', 'Jabong', 'Informatica', 'Unisys', 'Sprinklr', 'Medlife', 'Dunzo', 'Mobicip', 'Dailyhunt', 'National Instruments', 'Komli Media', 'Target Corporation', 'Junglee Games', 'Taxi4Sure', 'HSBC', 'Service Now', 'HCL', 'FreeCharge', 'Mallow Technologies', 'CGI', 'Zopper', 'redBus', 'KLA Tencor', 'Open Solutions', 'American Express', 'Practo', 'Bidgely', 'Uber', 'Yodlee Infotech', 'Code Brew', 'Cavisson System', 'HunanAsset', 'Motlay', 'Zomato', 'Freshokartz', 'Huawei', 'Knowlarity', 'LTI', 'L&T', 'Infosys', 'Others', 'ICICI Bank', 'Toppr', 'Truminds', 'Radisys'];
+        </div>
+        <hr>
+        <div class="row" id="blogs">
+        </div>
+</div>
+<script>
+    var companiesName = ['Amazon', 'Microsoft', 'Flipkart', 'Google', 'Adobe', 'Samsung', 'Accolite', 'MakeMyTrip', 'Snapdeal', 'Paytm', 'Zoho', 'Walmart', 'Morgan Stanley', 'OYO Rooms', 'Goldman Sachs', 'FactSet', 'D-E-Shaw', 'SAP Labs', 'Ola Cabs', 'Hike', 'MAQ Software', 'Oracle', 'VMWare', 'Qualcomm', 'Intuit ', 'Cisco', 'Facebook', 'Visa', 'Directi', 'Linkedin', 'Payu', 'Yahoo', 'Wipro', 'Yatra.com', 'Belzabar', 'Salesforce', 'Housing.com', 'Teradata', 'Synopsys', 'BankBazaar', 'Codenation', 'Citrix', 'Mahindra Comviva', 'TCS', 'InMobi', '24*7 Innovation Labs', 'One97', 'Apple', 'Times Internet', 'Twitter', 'Veritas', 'PayPal', 'Tejas Network', 'Boomerang Commerce', 'Groupon', 'Nutanix', 'Brocade', 'InfoEdge', 'Myntra', 'ABCO', 'CouponDunia', 'Cognizant ', 'Atlassian', 'Lybrate', 'Amdocs', 'IgniteWorld ', 'OATS Systems', 'United Health Group', 'Opera', 'Oxigen Wallet', 'Juniper Networks', 'Nagarro', 'Quikr', 'Rockstand', 'TinyOwl', 'GreyOrange ', 'Streamoid Technologies', 'Infosys', 'MetLife', 'Moonfrog Labs', 'Philips', 'Drishti-Soft', 'GE', 'PropTiger', 'Polycom', 'Kritikal Solutions', 'Media.net ', 'BrowserStack', 'Zillious', 'Fab.com', 'Accenture', 'IBM', 'CarWale', 'Cadence India', 'Epic Systems', 'Grofers', 'Nvidia', 'Wooker', 'Monotype Solutions', 'Arcesium', 'Bloomberg', 'nearbuy', 'Sapient', 'Xome', 'Expedia', 'Tesco', 'Airtel', 'Citicorp', 'eBay', 'Netskope ', 'Kuliza', 'DE Shaw', 'Swiggy', 'Dell', 'Infinera', 'PlaySimple', 'Rivigo', 'Intel', 'Pubmatic', 'Vizury Interactive Solutions', 'Zycus', 'Jabong', 'Informatica', 'Unisys', 'Sprinklr', 'Medlife', 'Dunzo', 'Mobicip', 'Dailyhunt', 'National Instruments', 'Komli Media', 'Target Corporation', 'Junglee Games', 'Taxi4Sure', 'HSBC', 'Service Now', 'HCL', 'FreeCharge', 'Mallow Technologies', 'CGI', 'Zopper', 'redBus', 'KLA Tencor', 'Open Solutions', 'American Express', 'Practo', 'Bidgely', 'Uber', 'Yodlee Infotech', 'Code Brew', 'Cavisson System', 'HunanAsset', 'Motlay', 'Zomato', 'Freshokartz', 'Huawei', 'Knowlarity', 'LTI', 'L&T', 'Infosys', 'Others', 'ICICI Bank', 'Toppr', 'Truminds', 'Radisys'];
 
-        var companyList = document.getElementById('companies');
+    var companyList = document.getElementById('companies');
 
-        companiesName.forEach(function (item) {
-            var option = document.createElement('option');
-            option.value = item;
-            companyList.appendChild(option);
-        });
+    companiesName.forEach(function (item) {
+        var option = document.createElement('option');
+        option.value = item;
+        companyList.appendChild(option);
+    });
 
-        var topics = ['Arrays', 'Strings', 'Hash', 'Tree', 'Matrix', 'Graph', 'Linked List', 'Stack', 'Binary Search Tree', 'Queue', 'Heap', 'Map', 'Segment-Tree', 'Trie', 'priority-queue', 'Data Structures', 'Binary Indexed Tree', 'AVL-Tree', 'Mathematical', 'Dynamic Programming', 'Sorting', 'Bit Magic', 'Searching', 'Recursion', 'Greedy', 'Prime Number', 'Binary Search', 'DFS', 'Backtracking', 'Numbers', 'Algorithms', 'sieve', 'Combinatorial', 'Divide and Conquer', 'BFS', 'Geometric', 'Modular Arithmetic', 'Fibonacci', 'series', 'palindrome', 'Binary Representation', 'Game Theory', 'Merge Sort', 'Machine Learning', 'STL', 'Java-Collections', 'sliding-window', 'number-theory', 'Misc', 'two-pointer-algorithm', 'Practice-Problems', 'python-loops', 'Tutorial-Problems', 'permutation', 'pattern-printing', 'Design-Pattern', 'python', 'python-io', 'python-operators', 'logical-thinking', 'doubly-linked-list', 'python-list', 'python-strings', 'factorial', 'prefix-sum', 'implementation', ' python-conditionals', 'constructive algo', 'Pattern Searching', ' \tmodular arithmetic', 'set', 'Traversal', 'Operators', 'Disjoint Set', 'subset', 'Regular Expression', 'Division', 'circular-linked-list', 'OOP', 'python-functions', 'Java-Strings', 'Date-Time', 'Shortest Path', 'Puzzles', 'Kadane', 'cpp-operator', 'Java-BigInteger', 'Java-Class and Object', 'cpp-strings', 'Data Type', 'python-set', 'Class', 'cpp-pointers', 'logarithm', 'Factorization', ' CPP-Control-Flow', 'python-dict', 'Sqrt Decomposition', 'inclusion-exclusion', 'Probability', 'Pointers', 'Java-Control-Flow', 'union-find', 'anagram', 'Functions', 'circular linked list', 'LCS', 'Range Minimum Query', 'Quantifiers', 'cryptography', 'Graph colouring', 'Character Encoding', 'Physics', 'Java-Operators', 'Gauss Elimination', 'Operating Systems', 'Reverse', 'Structures', 'Computer Networks', 'c-lang', 'parser', 'CPP-Control-Flow', 'alphabets']
-            ;
-        var topicsElement = document.getElementById('topics');
+    var topics = ['Arrays', 'Strings', 'Hash', 'Tree', 'Matrix', 'Graph', 'Linked List', 'Stack', 'Binary Search Tree', 'Queue', 'Heap', 'Map', 'Segment-Tree', 'Trie', 'priority-queue', 'Data Structures', 'Binary Indexed Tree', 'AVL-Tree', 'Mathematical', 'Dynamic Programming', 'Sorting', 'Bit Magic', 'Searching', 'Recursion', 'Greedy', 'Prime Number', 'Binary Search', 'DFS', 'Backtracking', 'Numbers', 'Algorithms', 'sieve', 'Combinatorial', 'Divide and Conquer', 'BFS', 'Geometric', 'Modular Arithmetic', 'Fibonacci', 'series', 'palindrome', 'Binary Representation', 'Game Theory', 'Merge Sort', 'Machine Learning', 'STL', 'Java-Collections', 'sliding-window', 'number-theory', 'Misc', 'two-pointer-algorithm', 'Practice-Problems', 'python-loops', 'Tutorial-Problems', 'permutation', 'pattern-printing', 'Design-Pattern', 'python', 'python-io', 'python-operators', 'logical-thinking', 'doubly-linked-list', 'python-list', 'python-strings', 'factorial', 'prefix-sum', 'implementation', ' python-conditionals', 'constructive algo', 'Pattern Searching', ' \tmodular arithmetic', 'set', 'Traversal', 'Operators', 'Disjoint Set', 'subset', 'Regular Expression', 'Division', 'circular-linked-list', 'OOP', 'python-functions', 'Java-Strings', 'Date-Time', 'Shortest Path', 'Puzzles', 'Kadane', 'cpp-operator', 'Java-BigInteger', 'Java-Class and Object', 'cpp-strings', 'Data Type', 'python-set', 'Class', 'cpp-pointers', 'logarithm', 'Factorization', ' CPP-Control-Flow', 'python-dict', 'Sqrt Decomposition', 'inclusion-exclusion', 'Probability', 'Pointers', 'Java-Control-Flow', 'union-find', 'anagram', 'Functions', 'circular linked list', 'LCS', 'Range Minimum Query', 'Quantifiers', 'cryptography', 'Graph colouring', 'Character Encoding', 'Physics', 'Java-Operators', 'Gauss Elimination', 'Operating Systems', 'Reverse', 'Structures', 'Computer Networks', 'c-lang', 'parser', 'CPP-Control-Flow', 'alphabets']
+        ;
+    var topicsElement = document.getElementById('topics');
 
-        topics.forEach(function (item) {
-            var option = document.createElement('option');
-            option.value = item;
-            topicsElement.appendChild(option);
-        });
+    topics.forEach(function (item) {
+        var option = document.createElement('option');
+        option.value = item;
+        topicsElement.appendChild(option);
+    });
 
-    </script>
-    </form>
+</script>
+</form>
 
-    <script src="scripts/multi-input.js"></script>
-    <script src="scripts/search-script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+<script src="/static/scripts/multi-input.js"></script>
+<script src="/static/scripts/search-script.js"></script>
+{% endblock %}
