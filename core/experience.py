@@ -5,10 +5,10 @@ from wsgiref.handlers import format_date_time
 from sqlalchemy import engine_from_config, inspect
 import time
 from sqlalchemy.sql import text
-from ..model.model import SQLALCHEMY_DATABASE_URI
-from ..model.model import db
-from ..model.model import Blog, Company, Login_Data, User_Company_Blog, User
-from ..utils.keygenerator import KeyGenerator 
+from model.model import SQLALCHEMY_DATABASE_URI
+from model.model import db
+from model.model import Blog, Company, Login_Data, User_Company_Blog, User
+from utils.keygenerator import KeyGenerator 
 
 keyGen = KeyGenerator()
 

@@ -1,5 +1,5 @@
 from flask import Blueprint
-from ..core import analytics
+from core import analytics
 
 analytics_api = Blueprint('analytics_api', __name__)
 

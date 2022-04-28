@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..core import experience
+from core import experience
 
 experience_api = Blueprint('experience_api', __name__)
 
@@ -25,4 +25,4 @@ def search():
 
 @experience_api.route("/view", methods=['GET'])
 def view():
-    return experience.viewExp()
+    return {"data": experience.viewExp()}

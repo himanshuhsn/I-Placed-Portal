@@ -1,5 +1,5 @@
 from sqlalchemy.sql import text
-from ..model.model import SQLALCHEMY_DATABASE_URI
+from model.model import SQLALCHEMY_DATABASE_URI
 import json
 import decimal, datetime
 

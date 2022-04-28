@@ -33,7 +33,7 @@ from route.experience_route import experience_api as experience_blueprint
 
 app.register_blueprint(auth_blueprint, url_prefix='/')
 app.register_blueprint(analytics_blueprint, url_prefix='/analytics')
-app.register_blueprint(analytics_blueprint, url_prefix='/experience')
+app.register_blueprint(experience_blueprint, url_prefix='/experience')
 
 # Database setup
 from config import USER, PASSWORD, HOST, PORT, DATABASE
