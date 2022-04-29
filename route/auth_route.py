@@ -51,7 +51,7 @@ def analytics():
 @auth_api.route("experience")
 def experience():
     if 'user_id' in session.keys():
-        return render_template("experience.html")
+        return render_template("form.html")
     else:
         return render_template("index.html")
 
