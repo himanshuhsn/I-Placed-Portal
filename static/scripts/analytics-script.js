@@ -11,8 +11,9 @@ async function userLoggedIn() {
     return loginStatus
 }
 
+
 function isAdmin() {
-    return false
+    return true
 }
 
 async function startup() {
@@ -28,7 +29,7 @@ async function startup() {
 }
 startup()
 
-document.getElementById("logout").addEventListener("click", function () {
+document.getElementById("/logOut").addEventListener("click", function () {
     doLogOut()
 });
 
@@ -39,7 +40,7 @@ function doLogOut() {
 
 function makePlots() {
     var trace1 = {
-        x: ["DSA", "Linked List", "Arrays", "DP", "DSA1", "Linked List1", "Arrays1", "DP1", "DSA2", "Linked List2", "Arrays2", "DP2"],
+        x: ["DSA", "Linked List", "Arrays", "DP", "hashmap", "hashset", "python", "c++", "set", "oops", "dbms", "strings"],
         y: [10, 15, 13, 17, 10, 15, 13, 17, 10, 15, 13, 17],
         type: 'scatter'
     };

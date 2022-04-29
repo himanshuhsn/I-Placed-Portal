@@ -19,6 +19,7 @@ def alchemyencoder(obj):
 def to_json(res):
     return json.dumps([dict(r) for r in res], default=alchemyencoder)
 
+# get topic frequency data from db
 def get_topic_frequency_data():
     topic_dict = dict()
     try:
@@ -37,6 +38,8 @@ def get_topic_frequency_data():
         print(str(e))
         return []
 
+# delete old data and store topic frequency to db
+# to be ran in schedule
 def store_topic_frequency_data():
     try:
         sql = text("DELETE FROM topic_frequency_data")
@@ -51,8 +54,9 @@ def store_topic_frequency_data():
         print(str(e))
         return False
 
+# fetch data from db
 def fetch_topic_frequency_data():
-    store_topic_frequency_data()
+    # store_topic_frequency_data()
     try:
         sql = text("SELECT * FROM topic_frequency_data")
         result = engine.execute(sql)
@@ -95,7 +99,7 @@ def store_company_selection_frequency_data():
         return False
 
 def fetch_company_selection_frequency_data():
-    store_company_selection_frequency_data()
+    # store_company_selection_frequency_data()
     try:
         sql = text("SELECT * FROM company_selection_frequency_data")
         result = engine.execute(sql)
@@ -138,7 +142,7 @@ def store_cgpa_company_data():
         return False
 
 def fetch_cgpa_company_data():
-    store_cgpa_company_data()
+    # store_cgpa_company_data()
     try:
         sql = text("SELECT * FROM cgpa_company_data")
         result = engine.execute(sql)
@@ -178,7 +182,7 @@ def store_difficulty_level_data():
         return False
 
 def fetch_difficulty_level_data():
-    store_difficulty_level_data()
+    # store_difficulty_level_data()
     try:
         sql = text("SELECT * FROM difficulty_level_data")
         result = engine.execute(sql)

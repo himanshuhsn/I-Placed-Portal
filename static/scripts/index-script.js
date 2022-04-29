@@ -12,7 +12,7 @@ async function userLoggedIn() {
 }
 
 function isAdmin() {
-    return false
+    return true
 }
 
 async function startup() {
@@ -42,7 +42,7 @@ function doLogin() {
     window.location.href = url;
 }
 
-document.getElementById("logout").addEventListener("click", function () {
+document.getElementById("/logOut").addEventListener("click", function () {
     doLogOut()
 });
 

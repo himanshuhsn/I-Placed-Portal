@@ -62,8 +62,8 @@ def search():
     else:
         return render_template("index.html")
 
-@auth_api.route("view")
-def view():
+@auth_api.route("home")
+def home():
     if 'user_id' in session.keys():
         return render_template("home.html")
     else:

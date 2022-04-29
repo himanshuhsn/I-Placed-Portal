@@ -12,7 +12,7 @@ async function userLoggedIn() {
 }
 
 function isAdmin() {
-    return false
+    return true
 }
 
 async function startup() {
@@ -29,7 +29,7 @@ async function startup() {
 
 startup()
 
-document.getElementById("logout").addEventListener("click", function () {
+document.getElementById("/logOut").addEventListener("click", function () {
     doLogOut()
 });
 
