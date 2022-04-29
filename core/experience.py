@@ -2,7 +2,7 @@ import random
 from sqlite3 import Timestamp
 import string
 from wsgiref.handlers import format_date_time
-from sqlalchemy import engine_from_config, inspect
+from sqlalchemy import engine_from_config, false, inspect, true
 import time
 from sqlalchemy.sql import text
 from model.model import SQLALCHEMY_DATABASE_URI
@@ -19,7 +19,9 @@ ts = time.time()
 
 def check_admin(user_id):
     sql = text("SELECT admin FROM user_data WHERE id = :x")
-    return engine.execute(sql, x = user_id)
+    if len(engine.execute(sql, x = user_id)) == 0:
+        return False
+    return True
 
 
 def addExp(formData):

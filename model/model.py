@@ -158,4 +158,64 @@ class User_Company_Blog(db.Model):
             'status': self.status
         }
 
+class Topic_Frequency_Data(db.Model):
+    __tablename__ = 'topic_frequency_data'
+    topic = db.Column(db.String(), primary_key=True)
+    frequency = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, topic, frequency):
+        self.topic = topic
+        self.frequency = frequency
+    
+    def serialize(self):
+        return {
+            'topic': self.topic,
+            'frequency': self.frequency,
+        }
+
+class Company_Selection_Frequency_Data(db.Model):
+    __tablename__ = 'company_selection_frequency_data'
+    company_name = db.Column(db.String(), primary_key=True)
+    frequency = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, company_name, frequency):
+        self.company_name = company_name
+        self.frequency = frequency
+    
+    def serialize(self):
+        return {
+            'topic': self.company_name,
+            'frequency': self.frequency,
+        }
+
+class Cgpa_Company_Data(db.Model):
+    __tablename__ = 'cgpa_company_data'
+    company_name = db.Column(db.String(), primary_key=True)
+    avg_cgpa = db.Column(db.Numeric(4,2), nullable=False)
+
+    def __init__(self, company_name, avg_cgpa):
+        self.company_name = company_name
+        self.avg_cgpa = avg_cgpa
+    
+    def serialize(self):
+        return {
+            'topic': self.company_name,
+            'frequency': self.avg_cgpa,
+        }
+
+class Difficulty_Level_Data(db.Model):
+    __tablename__ = 'difficulty_level_data'
+    level = db.Column(db.Integer, primary_key=True)
+    frequency = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, level, frequency):
+        self.level = level
+        self.frequency = frequency
+    
+    def serialize(self):
+        return {
+            'topic': self.level,
+            'frequency': self.frequency,
+        }
+
 db.create_all()

@@ -52,6 +52,7 @@ def store_topic_frequency_data():
         return False
 
 def fetch_topic_frequency_data():
+    store_topic_frequency_data()
     try:
         sql = text("SELECT * FROM topic_frequency_data")
         result = engine.execute(sql)
@@ -94,6 +95,7 @@ def store_company_selection_frequency_data():
         return False
 
 def fetch_company_selection_frequency_data():
+    store_company_selection_frequency_data()
     try:
         sql = text("SELECT * FROM company_selection_frequency_data")
         result = engine.execute(sql)
@@ -136,6 +138,7 @@ def store_cgpa_company_data():
         return False
 
 def fetch_cgpa_company_data():
+    store_cgpa_company_data()
     try:
         sql = text("SELECT * FROM cgpa_company_data")
         result = engine.execute(sql)
@@ -175,6 +178,7 @@ def store_difficulty_level_data():
         return False
 
 def fetch_difficulty_level_data():
+    store_difficulty_level_data()
     try:
         sql = text("SELECT * FROM difficulty_level_data")
         result = engine.execute(sql)

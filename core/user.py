@@ -17,6 +17,7 @@ class google_user(UserMixin):
     def get_user(user_id):
         try:
             users = Login_Data.query.filter_by(id=str(user_id)).all()
+            db.session.remove()
             if len(users) > 0:
                 new_user = google_user(
                     id_ = users[0].id ,
