@@ -20,6 +20,7 @@ ts = time.time()
 def check_admin(login_id):
     try:
         adm = Login_Data.query.filter_by(id=login_id).first().admin
+        db.session.remove()
         if(adm==False):
             return {"isAdmin" : False}
     except Exception as e:
@@ -111,7 +112,7 @@ def addExp(formData):
                 blog_id = blog_id,
                 timestamp = time.time(),
                 status = _status,
-                selected= False
+                selected= formData["status"]
         )
         db.session.add(new_blog)
         db.session.commit()
@@ -187,6 +188,7 @@ def search(tags_list,company_list=None):
 def approve(_id,login_id):
     try:
         adm = Login_Data.query.filter_by(id=login_id).first().admin
+        db.session.remove()
         if(adm==False):
             return "Sorry you're not admin :("
     except Exception as e:
@@ -209,6 +211,7 @@ def approve(_id,login_id):
 def deny(_id,login_id):
     try:
         adm = Login_Data.query.filter_by(id=login_id).first().admin
+        db.session.remove()
         if(adm==False):
             return "Sorry you're not admin :("
     except Exception as e:

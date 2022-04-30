@@ -9,7 +9,7 @@ experience_api = Blueprint('experience_api', __name__)
 @login_required
 def add():
     add_experience_data = request.get_json()
-    return experience.addExp(add_experience_data.to_dict())
+    return experience.addExp(add_experience_data)
 
 @experience_api.route("/approve", methods=['POST'])
 @login_required

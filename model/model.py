@@ -109,12 +109,13 @@ class Blog(db.Model):
     tags = db.Column(db.ARRAY(db.TEXT))
     feedback = db.Column(db.TEXT)
 
-    def __init__(self, id, level, article, timestamp, status, feedback):
+    def __init__(self, id, level, article, timestamp, status, tags, feedback):
         self.id = id
         self.level = level
         self.article = article
         self.timestamp = timestamp
         self.status = status
+        self.tags = tags
         self.feedback = feedback
 
     def serialize(self):
@@ -124,6 +125,7 @@ class Blog(db.Model):
             'article': self.article,
             'timestamp': self.timestamp,
             'status': self.status,
+            'tags': self.tags,
             'feedback': self.feedback
         }
 
