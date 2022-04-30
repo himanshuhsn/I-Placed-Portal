@@ -2,6 +2,7 @@ import random
 from sqlite3 import Timestamp
 import string
 from wsgiref.handlers import format_date_time
+from flask import jsonify
 from sqlalchemy import engine_from_config, false, inspect, true
 import time
 from sqlalchemy.sql import text
@@ -10,6 +11,7 @@ from model.model import db
 from model.model import Blog, Company, Login_Data, User_Company_Blog, User
 #from route.experience_route import view
 from utils.keygenerator import KeyGenerator 
+import json
 
 
 keyGen = KeyGenerator()
@@ -141,6 +143,9 @@ def companyExists(_name):
     except Exception as e:
         return(str(e))
 
+def to_json(res):
+    return json.dumps([dict(r) for r in res])
+
 def viewExp():
     try:
         sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
@@ -150,7 +155,19 @@ def viewExp():
         results = engine.execute(sql)
         ans = []
         for item in results:
-            ans.append(item)
+           blog = {
+               "first_name": item[0],
+               "last_name": item[1],
+               "email": item[2],
+               "cgpa": item[3],
+               "company": item[4],
+               "selected": item[5],
+               "round_data": item[6],
+               "status": item[7],
+               "tags": item[8],
+               "feedback": item[9]
+           } 
+           ans.append(blog)
         return ans 
     except Exception as e:
         return(str(e))
