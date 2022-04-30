@@ -167,7 +167,7 @@ async function makePlots() {
   var data = [
     {
       values: x,
-      labels: ["Easy", "Medium", "Hard"],
+      labels: ["Hard", "Medium", "Easy"],
       type: "pie",
     },
   ];

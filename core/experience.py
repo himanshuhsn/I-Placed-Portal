@@ -38,6 +38,7 @@ def addExp(formData):
     _key = keyGen.getKey()
     print(formData)
     _article = formData['round_data']
+    print(_article)
     _level = formData["level"]
     _firstName = formData["first_name"]
     _lastName= formData["last_name"]

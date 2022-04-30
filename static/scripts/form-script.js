@@ -372,7 +372,7 @@ function giveJson() {
   if (difficultLevel == "easy") {
     difficultLevel = 0;
   } else if (difficultLevel == "medium") {
-    selectionStatus = 1;
+    difficultLevel = 1;
   } else {
     difficultLevel = 2;
   }
@@ -429,5 +429,5 @@ const postData = () => {
 
   setTimeout(function () {
     window.location = "home";
-  }, 10000);
+  }, 2000);
 };
