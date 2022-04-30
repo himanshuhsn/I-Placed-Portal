@@ -12,6 +12,60 @@ async function userLoggedIn() {
 }
 
 
+async function getData1() {
+    let url = 'https://127.0.0.1:5000/analytics/topic_frequency';
+    let data = [];
+    try {
+        let response = await fetch(url)
+        data = (await response.json());
+    } catch (error) {
+        console.log(error)
+    }
+    console.log("Data incoming plot 1 ", data)
+    return data
+}
+
+async function getData2() {
+    let url = 'https://127.0.0.1:5000/analytics/company_frequency';
+    let data = [];
+    try {
+        let response = await fetch(url)
+        data = (await response.json());
+    } catch (error) {
+        console.log(error)
+    }
+    console.log("Data incoming plot 2 ", data)
+    return data
+}
+
+
+async function getData3() {
+    let url = 'https://127.0.0.1:5000/analytics/cgpa_company';
+    let data = [];
+    try {
+        let response = await fetch(url)
+        data = (await response.json());
+    } catch (error) {
+        console.log(error)
+    }
+    console.log("Data incoming plot 3 ", data)
+    return data
+}
+
+
+async function getData4() {
+    let url = 'https://127.0.0.1:5000/analytics/difficulty_level';
+    let data = [];
+    try {
+        let response = await fetch(url)
+        data = (await response.json());
+    } catch (error) {
+        console.log(error)
+    }
+    console.log("Data incoming plot 4 ", data)
+    return data
+}
+
 function isAdmin() {
     return true
 }
@@ -38,10 +92,16 @@ function doLogOut() {
     window.location.href = url;
 }
 
-function makePlots() {
+async function makePlots() {
+    let data_plot1 = await getData1()
+    let x = [], y = [];
+    for (let i = 0; i < data_plot1.length; i++) {
+        x.push(data_plot1[i].topic);
+        y.push(data_plot1[i].frequency);
+    }
     var trace1 = {
-        x: ["DSA", "Linked List", "Arrays", "DP", "hashmap", "hashset", "python", "c++", "set", "oops", "dbms", "strings"],
-        y: [10, 15, 13, 17, 10, 15, 13, 17, 10, 15, 13, 17],
+        x: x,
+        y: y,
         type: 'scatter'
     };
 
@@ -50,35 +110,53 @@ function makePlots() {
 
     Plotly.newPlot('plot-1', data);
 
-    var data = [
-        {
-            x: ['Paytm', 'LTI', 'Redisys', "Amazon", "ICICI Bank"],
-            y: [21, 6, 8, 2, 8],
-            type: 'bar'
-        }
-    ];
+    let data_plot2 = await getData2()
+    x = [], y = [];
+    for (let i = 0; i < data_plot2.length; i++) {
+        x.push(data_plot2[i].company_name);
+        y.push(data_plot2[i].frequency);
+    }
+    var trace2 = {
+        x: x,
+        y: y,
+        type: 'scatter'
+    };
+
+
+    var data = [trace2];
 
     Plotly.newPlot('plot-2', data);
 
-    var data = [
-        {
-            x: ['Paytm', 'LTI', 'Redisys', "Amazon", "ICICI Bank"],
-            y: [8.7, 7.6, 8.1, 9.2, 7.2],
-            type: 'bar'
-        }
-    ];
+    let data_plot3 = await getData3()
+    x = [], y = [];
+    for (let i = 0; i < data_plot3.length; i++) {
+        x.push(data_plot3[i].company_name);
+        y.push(data_plot3[i].avg_cgpa);
+    }
+    var trace3 = {
+        x: x,
+        y: y,
+        type: 'bar'
+    };
 
+
+    var data = [trace3];
 
     Plotly.newPlot('plot-3', data);
 
+    let data_plot4 = await getData4()
+    x = [], y = [];
+    for (let i = 0; i < data_plot4.length; i++) {
+        x.push(data_plot4[i].frequency);
+    }
     var data = [{
-        values: [19, 55, 27],
+        values: x,
         labels: ['Easy', 'Medium', 'Hard'],
         type: 'pie'
     }];
 
     var layout = {
-        height: 350,
+        height: 300,
         width: 500
     };
 

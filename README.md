@@ -3,7 +3,8 @@ One portal for placement related student experiences for IIT Bhilai.
 
 Do the following steps to run the app:
 * Add the required values to config.py
-* USER, PASSWORD, HOST, PORT, DATABASE, GOOGLE_CLIENT_ID , GOOGLE_CLIENT_SECRET , GOOGLE_DISCOVERY_URL
+* USER, PASSWORD, HOST, PORT, DATABASE
+* Create a google cloud account and retrieve the following credentials  GOOGLE_CLIENT_ID , GOOGLE_CLIENT_SECRET , GOOGLE_DISCOVERY_URL and also add these to config.py . 
 
 * Install docker on your machine, you can refer:
 
