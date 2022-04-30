@@ -1,0 +1,16 @@
+Run these queries to add sample data
+INSERT INTO public.cgpa_company_data(
+	company_name, avg_cgpa)
+	VALUES ('icici bank', 7);
+
+INSERT INTO public.difficulty_level_data(
+	level, frequency)
+	VALUES (2, 9);
+
+INSERT INTO public.company_selection_frequency_data(
+	company_name, frequency)
+	VALUES ('icici bank', 10);
+
+INSERT INTO public.topic_frequency_data(
+	topic, frequency)
+	VALUES ('dsa', 38);

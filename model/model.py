@@ -37,7 +37,7 @@ class Login_Data(db.Model):
         }
 
 class User(db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'user_data'
 
     id = db.Column(db.String(), primary_key=True)
     email = db.Column(db.String(), nullable=False)
@@ -131,7 +131,7 @@ class User_Company_Blog(db.Model):
     __tablename__ = 'user_company_blog'
 
     id = db.Column(db.String(), primary_key=True)
-    user_id = db.Column(db.String(), ForeignKey('user.id'))
+    user_id = db.Column(db.String(), ForeignKey('user_data.id'))
     company_id = db.Column(db.String(), ForeignKey('company.id'))
     blog_id = db.Column(db.String(), ForeignKey('blog.id'))
     selected = db.Column(db.Boolean(), unique=False, default=False)

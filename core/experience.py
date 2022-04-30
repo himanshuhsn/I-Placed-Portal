@@ -17,11 +17,14 @@ keyGen = KeyGenerator()
 engine = db.create_engine(SQLALCHEMY_DATABASE_URI,{})
 ts = time.time()
 
-def check_admin(user_id):
-    sql = text("SELECT admin FROM user_data WHERE id = :x")
-    if len(engine.execute(sql, x = user_id)) == 0:
-        return False
-    return True
+def check_admin(login_id):
+    try:
+        adm = Login_Data.query.filter_by(id=login_id).first().admin
+        if(adm==False):
+            return {"isAdmin" : False}
+    except Exception as e:
+        return(str(e))
+    return {"isAdmin" : True}
 
 
 def addExp(formData):
@@ -139,7 +142,7 @@ def companyExists(_name):
 
 def viewExp():
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.key, user_data.admin, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
 " inner join blog on blog.id = user_company_blog.blog_id")

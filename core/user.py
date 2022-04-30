@@ -8,10 +8,11 @@ key_object = keygenerator.KeyGenerator()
 from flask_login import UserMixin
 
 class google_user(UserMixin):
-    def __init__(self,id_,  name, email):
+    def __init__(self,id_,  name, email, admin):
         self.id = id_,
         self.name = name,
         self.email = email
+        self.admin = admin
 
     @staticmethod
     def get_user(user_id):
@@ -22,7 +23,8 @@ class google_user(UserMixin):
                 new_user = google_user(
                     id_ = users[0].id ,
                     name = users[0].name,
-                    email =  users[0].email
+                    email =  users[0].email,
+                    admin = users[0].admin
                     )
                 return new_user
             else: 

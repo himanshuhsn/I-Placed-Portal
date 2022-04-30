@@ -24,9 +24,7 @@ from flask_login import (
 
 @auth_api.route("isAdmin")
 def is_admin():
-    if check_admin(session.user_id):
-        return True
-    return False
+    return check_admin(session["user_id"][2:len(session["user_id"])-3])
 
 @auth_api.route("loggedIn")
 def is_logged_in():
@@ -72,7 +70,8 @@ def home():
 
 @auth_api.route("admin")
 def admin():
-    if 'user_id' in session.keys() and is_admin:
+    print(is_admin())
+    if ('user_id' in session.keys()) and is_admin()['isAdmin']:
         return render_template("admin.html")
     else:
         return render_template("index.html")
@@ -140,10 +139,13 @@ def callback():
     if not user.google_user.get_user(unique_id):
         user.google_user.create_user(unique_id, users_name, users_email)
 
+    print(unique_id)
+
     test_user = user.google_user(
         id_ = unique_id, 
         name = users_name,
-        email = users_email
+        email = users_email,
+        admin = False
         )
 
     # Begin user session by logging the user in

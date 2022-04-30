@@ -11,6 +11,19 @@ async function userLoggedIn() {
     return loginStatus
 }
 
+async function isAdmin() {
+    let url = 'https://127.0.0.1:5000/isAdmin';
+    let status = false;
+    try {
+        let response = await fetch(url)
+        status = (await response.json()).isAdmin;
+    } catch (error) {
+        console.log(error)
+    }
+    console.log(status)
+    return status
+}
+
 
 async function getData1() {
     let url = 'https://127.0.0.1:5000/analytics/topic_frequency';
@@ -65,18 +78,26 @@ async function getData4() {
     console.log("Data incoming plot 4 ", data)
     return data
 }
-
-function isAdmin() {
-    return true
+async function isAdmin() {
+    let url = 'https://127.0.0.1:5000/isAdmin';
+    let status = false;
+    try {
+        let response = await fetch(url)
+        status = (await response.json()).isAdmin;
+    } catch (error) {
+        console.log(error)
+    }
+    console.log(status)
+    return status
 }
 
 async function startup() {
     if (await userLoggedIn()) {
         document.getElementById("/logOut").style.display = "block"
-        makePlots()
+        await makePlots()
     }
 
-    if (isAdmin()) {
+    if (await isAdmin()) {
         document.getElementById("/admin").style.display = "block"
     }
 
