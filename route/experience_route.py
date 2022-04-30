@@ -27,7 +27,7 @@ def deny():
 @login_required
 def search():
     tags = request.get_json()
-    return experience.search(tags)
+    return {"data": experience.search(tags)}
 
 @experience_api.route("/view", methods=['GET'])
 @login_required

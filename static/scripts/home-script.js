@@ -132,14 +132,10 @@ function createBlob(blogData, blogNumber) {
   return div;
 }
 const getData = async () => {
-  console.log("get data 1");
   let datas = await getBlogData();
-  console.log("Second", datas);
   datas = datas.data;
-  console.log("get data 2");
+  console.log(datas)
   for (let i = 0; i < datas.length; i++) {
-    // console.log(datas[i]);
-    console.log("get data 3");
     const ele = document.getElementById("blogs");
     ele.appendChild(createBlob(datas[i], i + 1));
   }

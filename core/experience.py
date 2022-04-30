@@ -149,7 +149,7 @@ def to_json(res):
 
 def viewExp():
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback , user_data.batch "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
 " inner join blog on blog.id = user_company_blog.blog_id")
@@ -166,7 +166,8 @@ def viewExp():
                "round_data": item[6],
                "status": item[7],
                "tags": item[8],
-               "feedback": item[9]
+               "feedback": item[9],
+               "batch": item[10]
            } 
            ans.append(blog)
         return ans 
@@ -178,9 +179,17 @@ def intersection(lst1, lst2):
     if lst3 == []:
         return False
     return True
-def search(tags_list,company_list=None):
+def search(tags):
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.key, user_data.admin, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback "+
+        tags_list = tags["tags_list"]
+    except:
+        tags_list = []
+    try:
+        company_list = tags["company_list"]
+    except:
+        company_list = []
+    try:
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback , user_data.batch "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
 " inner join blog on blog.id = user_company_blog.blog_id")
@@ -188,16 +197,57 @@ def search(tags_list,company_list=None):
         ans = []
         if(tags_list==[]):
             for item in results:
-                if item[6] in company_list:
-                    ans.append(item)
+                if item[4] in company_list:
+
+                    blog = {
+                        "first_name": item[0],
+                        "last_name": item[1],
+                        "email": item[2],
+                        "cgpa": item[3],
+                        "company": item[4],
+                        "selected": item[5],
+                        "round_data": item[6],
+                        "status": item[7],
+                        "tags": item[8],
+                        "feedback": item[9],
+                        "batch": item[10]
+                    } 
+                    ans.append(blog)
         elif(company_list==[] or company_list == None):
             for item in results:
-                if intersection(item[10],tags_list):
-                    ans.append(item)
+                if intersection(item[8],tags_list):
+                    blog = {
+                        "first_name": item[0],
+                        "last_name": item[1],
+                        "email": item[2],
+                        "cgpa": item[3],
+                        "company": item[4],
+                        "selected": item[5],
+                        "round_data": item[6],
+                        "status": item[7],
+                        "tags": item[8],
+                        "feedback": item[9],
+                        "batch": item[10]
+                    } 
+                    ans.append(blog)
         else:
             for item in results:
-                if item[6] in company_list and intersection(item[10],tags_list):
-                    ans.append(item)
+                print(item)
+                if item[4] in company_list and intersection(item[8],tags_list):
+                    blog = {
+                        "first_name": item[0],
+                        "last_name": item[1],
+                        "email": item[2],
+                        "cgpa": item[3],
+                        "company": item[4],
+                        "selected": item[5],
+                        "round_data": item[6],
+                        "status": item[7],
+                        "tags": item[8],
+                        "feedback": item[9],
+                        "batch": item[10]
+                    } 
+                    ans.append(blog)
         return ans
     except Exception as e:
         print(str(e))
@@ -247,3 +297,4 @@ def deny(_id,login_id):
 def object_as_dict(obj):
     return {c.key: getattr(obj, c.key)
             for c in inspect(obj).mapper.column_attrs}
+
