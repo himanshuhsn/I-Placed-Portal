@@ -222,19 +222,6 @@ companies.forEach(function (item) {
   list.appendChild(option);
 });
 
-function logoutUser() {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      // Sign-out successful.
-      console.log("logout ");
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error);
-    });
-}
 
 let roundNumber = 1;
 let questionNumber = 1;

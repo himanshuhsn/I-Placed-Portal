@@ -33,3 +33,9 @@ def search():
 @login_required
 def view():
     return {"data": experience.viewExp()}
+
+@experience_api.route("/get_unapproved_blogs", methods=['POST'])
+@login_required
+def get_unapproved_blogs():
+    Credentials = request.get_json()
+    return {"data": experience.get_unapproved_blogs(Credentials)}

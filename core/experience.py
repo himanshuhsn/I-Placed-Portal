@@ -179,6 +179,7 @@ def intersection(lst1, lst2):
     if lst3 == []:
         return False
     return True
+
 def search(tags):
     try:
         tags_list = tags["tags_list"]
@@ -253,6 +254,41 @@ def search(tags):
         print(str(e))
         return None
 
+def get_unapproved_blogs(Credentials):
+    try:
+        adm = Login_Data.query.filter_by(id=Credentials["user_id"]).first().admin
+        db.session.remove()
+        if(adm==False):
+            return "Sorry you're not admin :("
+    except Exception as e:
+        return(str(e))
+    try:
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback , user_data.batch, user_company_blog.id "+
+"from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
+" inner join company on company.id = user_company_blog.company_id "+
+" inner join blog on blog.id = user_company_blog.blog_id "+"where user_company_blog.status = 'U'")
+        results = engine.execute(sql)
+        ans = []
+        for item in results:
+           blog = {
+               "first_name": item[0],
+               "last_name": item[1],
+               "email": item[2],
+               "cgpa": item[3],
+               "company": item[4],
+               "selected": item[5],
+               "round_data": item[6],
+               "status": item[7],
+               "tags": item[8],
+               "feedback": item[9],
+               "batch": item[10],
+               "user_blog_id": item[11]
+           } 
+           ans.append(blog)
+        return ans 
+    except Exception as e:
+        return(str(e))
+
 def approve(_id,login_id):
     try:
         adm = Login_Data.query.filter_by(id=login_id).first().admin
@@ -286,12 +322,16 @@ def deny(_id,login_id):
         return(str(e))
 
     try:
+        print("here at delete",_id, login_id)
         blogId= User_Company_Blog.query.filter_by(id=_id).first().blog_id
-        User_Company_Blog.query.filter_by(id=_id).first().delete()
-        Blog.query.filter_by(id=blogId).first().delete()
+        print(User_Company_Blog.query.filter_by(id=_id).first())
+        User_Company_Blog.query.filter_by(id=_id).delete()
+        Blog.query.filter_by(id=blogId).delete()
         db.session.commit()
+        print("Success")
         return "Success"
     except Exception as e:
+        print(str(e))
         return(str(e))
 
 def object_as_dict(obj):

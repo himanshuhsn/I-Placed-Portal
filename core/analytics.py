@@ -25,7 +25,7 @@ def get_topic_frequency_data():
     try:
         sql = text("SELECT tags "+
                     "FROM blog "+
-                    "WHERE status = 'U' ")
+                    "WHERE status = 'A' ")
         results = engine.execute(sql)
         for item in results:
             for tags in item.tags:
@@ -71,7 +71,7 @@ def get_company_selection_frequency_data() -> list:
         sql = text("SELECT company.name, COUNT(*) as frequency " + 
                 "FROM company INNER JOIN user_company_blog " +
                 "ON company.id = user_company_blog.company_id " +
-                "WHERE user_company_blog.selected = 'true' and user_company_blog.status = 'U' " +
+                "WHERE user_company_blog.selected = 'true' and user_company_blog.status = 'A' " +
                 "GROUP BY company.name " +
                 "ORDER BY frequency desc " + 
                 "LIMIT 10")
@@ -116,7 +116,7 @@ def get_cgpa_company_data():
                     "FROM company " + 
                     "INNER JOIN user_company_blog ON company.id = user_company_blog.company_id " +
                     "INNER JOIN user_data ON user_company_blog.user_id = user_data.id " +
-                    "WHERE user_company_blog.selected = 'true' and user_company_blog.status = 'U' " +
+                    "WHERE user_company_blog.selected = 'true' and user_company_blog.status = 'A' " +
                     "GROUP BY company.name " +
                     "LIMIT 10")
         results = engine.execute(sql)
@@ -157,7 +157,7 @@ def get_difficulty_level_data():
     try:
         sql = text("SELECT level ,COUNT(*) " +
                     "FROM blog " +
-                    "WHERE status = 'U' " +
+                    "WHERE status = 'A' " +
                     "GROUP BY level")
         results = engine.execute(sql)
         difficulty_level_list = list()

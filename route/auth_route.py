@@ -26,6 +26,10 @@ from flask_login import (
 def is_admin():
     return check_admin(session["user_id"][2:len(session["user_id"])-3])
 
+@auth_api.route("userId")
+def get_user_id():
+    return {"user_id": session["user_id"][2:len(session["user_id"])-3]}
+
 @auth_api.route("loggedIn")
 def is_logged_in():
     return {"status" : current_user.is_authenticated}
@@ -70,7 +74,6 @@ def home():
 
 @auth_api.route("admin")
 def admin():
-    print(is_admin())
     if ('user_id' in session.keys()) and is_admin()['isAdmin']:
         return render_template("admin.html")
     else:
@@ -145,7 +148,7 @@ def callback():
         id_ = unique_id, 
         name = users_name,
         email = users_email,
-        admin = False
+        admin = True
         )
 
     # Begin user session by logging the user in
