@@ -31,5 +31,5 @@ Do the following steps to run the app:
 
 Contributors:
 * Swapnil Narad
-* Himanshu Shekhar Nayak
+* Himanshu Sekhar Nayak
 * Devansh Chaudhary
