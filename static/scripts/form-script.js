@@ -260,9 +260,8 @@ document.getElementById("submit").addEventListener("click", function () {
 
 const questionHtml = (questionNumber) => `
         <label for="question_${questionNumber}">Question ${questionNumber}</label>
-        <textarea class="form-control"" rows="3" id="data_round_${roundNumber}_question_${
-  listQuestionByRound[roundNumber - 1]
-}" placeholder="Add question description"></textarea>
+        <textarea class="form-control"" rows="3" id="data_round_${roundNumber}_question_${listQuestionByRound[roundNumber - 1]
+  }" placeholder="Add question description"></textarea>
         <br>`;
 
 const roundHtml = (roundNumber) => `
@@ -270,9 +269,8 @@ const roundHtml = (roundNumber) => `
         <br>
         <div id="question_${questionNumber}" class="round_${roundNumber}_question_${questionNumber}">
             <label for="question_${questionNumber}">Question ${questionNumber}</label>
-            <textarea class="form-control"" rows="3" id="data_round_${roundNumber}_question_${
-  listQuestionByRound[roundNumber - 1]
-}" placeholder="Add question description"></textarea>
+            <textarea class="form-control"" rows="3" id="data_round_${roundNumber}_question_${listQuestionByRound[roundNumber - 1]
+  }" placeholder="Add question description"></textarea>
         </div>
         <br>`;
 
@@ -368,17 +366,18 @@ function giveJson() {
   for (let topics = 0; topics < totalTags; topics++) {
     topicTags.push(document.getElementsByClassName("item")[topics].textContent);
   }
-  roundData = {};
+  roundData = "";
   for (let i = 1; i <= roundNumber; i++) {
-    questionData = {};
+    questionData = "";
     for (let j = 1; j <= listQuestionByRound[i - 1]; j++) {
       question = document.getElementById(
         "data_round_" + i + "_question_" + j
       ).value;
-      questionData["question_" + j] = question;
+      questionData += "question_" + j + " " + question + " ";
     }
-    roundData["round_" + i] = questionData;
+    roundData += "round_" + i + " " + questionData;
   }
+
   let formData = {
     first_name: firstName,
     last_name: lastName,
@@ -413,7 +412,7 @@ const postData = () => {
     .catch((error) => {
       console.error("Error:", error);
     });
-
+  alert("Thanks for adding your blog, your experience blog has been sent for verification.")
   setTimeout(function () {
     window.location = "home";
   }, 2000);

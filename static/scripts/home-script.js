@@ -101,7 +101,7 @@ const blogHtml = (blog, num, roundData) => `
 
 function createBlob(blogData, blogNumber) {
   const div = document.createElement("div");
-  if (blogData.selected == 0) {
+  if (blogData.selected == 1) {
     blogData.selected = "Selected";
   } else {
     blogData.selected = "Rejected";

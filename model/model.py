@@ -103,7 +103,7 @@ class Blog(db.Model):
 
     id = db.Column(db.String(), primary_key=True)
     level = db.Column(db.Integer, nullable=False)
-    article = db.Column(db.ARRAY(db.TEXT), primary_key=False)
+    article = db.Column(db.String(), primary_key=False)
     timestamp = db.Column(db.Integer)
     status = db.Column(db.Enum("A","U",name='approval_status'))
     tags = db.Column(db.ARRAY(db.TEXT))
