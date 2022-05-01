@@ -50,6 +50,7 @@ def addExp(formData):
     _tags = formData["tags"]
     _cgpa = formData["cgpa"]
 
+    print(formData["round_data"])
     if(userExists(_email)==False):
         try:
             new_user = User(
@@ -149,10 +150,10 @@ def to_json(res):
 
 def viewExp():
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback , user_data.batch "+
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, user_company_blog.selected , blog.article, blog.status, blog.tags,blog.feedback , user_data.batch "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
-" inner join blog on blog.id = user_company_blog.blog_id")
+" inner join blog on blog.id = user_company_blog.blog_id "+"where user_company_blog.status = 'A'")
         results = engine.execute(sql)
         ans = []
         for item in results:
@@ -162,12 +163,13 @@ def viewExp():
                "email": item[2],
                "cgpa": item[3],
                "company": item[4],
-               "selected": item[5],
-               "round_data": item[6],
-               "status": item[7],
-               "tags": item[8],
-               "feedback": item[9],
-               "batch": item[10]
+               "level": item[5],
+               "selected": item[6],
+               "round_data": item[7],
+               "status": item[8],
+               "tags": item[9],
+               "feedback": item[10],
+               "batch": item[11]
            } 
            ans.append(blog)
         return ans 
@@ -190,10 +192,10 @@ def search(tags):
     except:
         company_list = []
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback , user_data.batch "+
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, user_company_blog.selected , blog.article, blog.status, blog.tags,blog.feedback , user_data.batch "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
-" inner join blog on blog.id = user_company_blog.blog_id")
+" inner join blog on blog.id = user_company_blog.blog_id "+"where user_company_blog.status = 'A'")
         results = engine.execute(sql)
         ans = []
         if(tags_list==[]):
@@ -206,47 +208,50 @@ def search(tags):
                         "email": item[2],
                         "cgpa": item[3],
                         "company": item[4],
-                        "selected": item[5],
-                        "round_data": item[6],
-                        "status": item[7],
-                        "tags": item[8],
-                        "feedback": item[9],
-                        "batch": item[10]
+                        "level": item[5],
+                        "selected": item[6],
+                        "round_data": item[7],
+                        "status": item[8],
+                        "tags": item[9],
+                        "feedback": item[10],
+                        "batch": item[11]
                     } 
                     ans.append(blog)
         elif(company_list==[] or company_list == None):
             for item in results:
-                if intersection(item[8],tags_list):
+                if intersection(item[9],tags_list):
                     blog = {
                         "first_name": item[0],
                         "last_name": item[1],
                         "email": item[2],
                         "cgpa": item[3],
                         "company": item[4],
-                        "selected": item[5],
-                        "round_data": item[6],
-                        "status": item[7],
-                        "tags": item[8],
-                        "feedback": item[9],
-                        "batch": item[10]
+                        "level": item[5],
+                        "selected": item[6],
+                        "round_data": item[7],
+                        "status": item[8],
+                        "tags": item[9],
+                        "feedback": item[10],
+                        "batch": item[11]
                     } 
                     ans.append(blog)
         else:
             for item in results:
                 print(item)
-                if item[4] in company_list and intersection(item[8],tags_list):
+                if item[4] in company_list and intersection(item[9],tags_list):
                     blog = {
                         "first_name": item[0],
                         "last_name": item[1],
                         "email": item[2],
                         "cgpa": item[3],
                         "company": item[4],
-                        "selected": item[5],
-                        "round_data": item[6],
-                        "status": item[7],
-                        "tags": item[8],
-                        "feedback": item[9],
-                        "batch": item[10]
+                        "level": item[5],
+                        "selected": item[6],
+                        "round_data": item[7],
+                        "status": item[8],
+                        "tags": item[9],
+                        "feedback": item[10],
+                        "batch": item[11]
                     } 
                     ans.append(blog)
         return ans
@@ -263,7 +268,7 @@ def get_unapproved_blogs(Credentials):
     except Exception as e:
         return(str(e))
     try:
-        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, blog.article, blog.status, blog.tags,blog.feedback , user_data.batch, user_company_blog.id "+
+        sql = text("Select  user_data.first_name, user_data.last_name, user_data.email, user_data.cgpa, company.name, blog.level, user_company_blog.selected , blog.article, blog.status, blog.tags,blog.feedback , user_data.batch, user_company_blog.id "+
 "from user_data "+" inner join user_company_blog on user_data.id = user_company_blog.user_id"+
 " inner join company on company.id = user_company_blog.company_id "+
 " inner join blog on blog.id = user_company_blog.blog_id "+"where user_company_blog.status = 'U'")
@@ -276,13 +281,14 @@ def get_unapproved_blogs(Credentials):
                "email": item[2],
                "cgpa": item[3],
                "company": item[4],
-               "selected": item[5],
-               "round_data": item[6],
-               "status": item[7],
-               "tags": item[8],
-               "feedback": item[9],
-               "batch": item[10],
-               "user_blog_id": item[11]
+               "level": item[5],
+               "selected": item[6],
+               "round_data": item[7],
+               "status": item[8],
+               "tags": item[9],
+               "feedback": item[10],
+               "batch": item[11],
+               "user_blog_id": item[12]
            } 
            ans.append(blog)
         return ans 
