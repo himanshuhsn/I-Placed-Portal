@@ -1,4 +1,7 @@
 Run these queries to add sample data
+UPDATE public.login_data
+	SET admin=true
+
 INSERT INTO public.cgpa_company_data(
 	company_name, avg_cgpa)
 	VALUES ('icici bank', 7);

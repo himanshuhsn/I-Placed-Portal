@@ -1,6 +1,8 @@
 # I-Placed-Portal
 One portal for placement related student experiences for IIT Bhilai.
 
+### You can find a working MVP here -> [LINK](https://swapnilnarad2000.github.io/I-Placed-Portal-MVP/)
+
 Do the following steps to run the app:
 * Add the required values to config.py
 * USER, PASSWORD, HOST, PORT, DATABASE
