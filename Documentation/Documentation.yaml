@@ -1,0 +1,488 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "I-Placed-Portal"
+basePath: "/v1"
+tags:
+  - name: "experience"
+    description: "APIs for blogs."
+  - name: "analytics"
+    description: "Get different analytics and insights."
+schemes:
+  - "http"
+paths:
+  /experience/add:
+    post:
+      tags:
+        - "experience"
+      summary: "Creates a new experience blog in the database."
+      description: "Creates a new experience blog in the database."
+      operationId: "add_experience"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "add_experience_data"
+          description: "add_experience_data."
+          required: true
+          schema:
+            $ref: "#/definitions/AddExperience"
+      responses:
+        "200":
+          description: "Successful"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.experience_controller"
+  /experience/view:
+    get:
+      tags:
+        - "experience"
+      summary: "Returns an experience blog."
+      description: "Returns a blog."
+      operationId: "view_experience"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful"
+          schema:
+            $ref: "#/definitions/ViewExperiences"
+        "400":
+          description: "Not Found"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.experience_controller"
+  /experience/search:
+    post:
+      tags:
+        - "experience"
+      summary: "Search any experience blog by tags."
+      description: "search any experience blog by tags."
+      operationId: "search_experience"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "tags"
+          description: "tags."
+          required: true
+          schema:
+            $ref: "#/definitions/Tags"
+      responses:
+        "200":
+          description: "Successful"
+          schema:
+            $ref: "#/definitions/ViewExperiences"
+        "400":
+          description: "Not Found"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.experience_controller"
+  /experience/approve:
+    post:
+      tags:
+        - "experience"
+      summary: "Admin can approve a blog."
+      description:
+        "Endpoint for the admin to approve an experience article."
+      operationId: "approve_experience"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "Credentials"
+          description: "approve_data"
+          required: true
+          schema:
+            $ref: "#/definitions/Approve"
+      responses:
+        "200":
+          description: "Successful"
+        "400":
+          description: "Something went wrong."
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.experience_controller"
+  /experience/deny:
+    post:
+      tags:
+        - "experience"
+      summary: "Admin can disapprove blog."
+      description:
+        "Admin can disapprove blog."
+      operationId: "deny_experience"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "Credentials"
+          description: "approve_data"
+          required: true
+          schema:
+            $ref: "#/definitions/Approve"
+      responses:
+        "200":
+          description: "Successful"
+        "400":
+          description: "Something went wrong."
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.experience_controller"
+  /experience/get_unapproved_blogs:
+    post:
+      tags:
+        - "experience"
+      summary: "Admin can get all the unapproved blogs"
+      description:
+        "Admin can get all the unapproved blogs"
+      operationId: "get_unapproved_blogs"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "Credentials"
+          description: "admin id is required"
+          required: true
+          schema:
+            $ref: "#/definitions/Unapproved"
+      responses:
+        "200":
+          description: "Successful"
+        "400":
+          description: "Something went wrong."
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.experience_controller" 
+  /analytics/topic_frequency:
+    get:
+      tags:
+        - "analytics"
+      summary: "Gives frequency of topics asked.."
+      description: "Gives frequency of topics asked for all the company."
+      operationId: "topic_frequency"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful"
+          schema:
+            $ref: "#/definitions/TopicFrequency"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.analytics_controller"
+  /analytics/company_frequency:
+    get:
+      tags:
+        - "analytics"
+      summary: "Get frequency of student placed in each company."
+      description: "Get frequency of student placed in each company."
+      operationId: "company_frequency"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful"
+          schema:
+            $ref: "#/definitions/CompanyFrequency"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.analytics_controller"
+  /analytics/cgpa_company:
+    get:
+      tags:
+        - "analytics"
+      summary: "Get average cgpa for placed student of each company."
+      description: "Get average cgpa for placed student of each company."
+      operationId: "cgpa_company"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful"
+          schema:
+            $ref: "#/definitions/CompanyCgpa"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.analytics_controller"
+  /analytics/difficulty_level:
+    get:
+      tags:
+        - "analytics"
+      summary: "Get percentage of each difficulty level."
+      description: "Get percentage of each difficulty level."
+      operationId: "difficulty_level"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful"
+          schema:
+            $ref: "#/definitions/LevelFrequency"
+      x-swagger-router-controller: "I-Placed-Portal.web.controllers.analytics_controller"
+definitions:
+  AddExperience:
+    type: "object"
+    required:
+      - "batch"
+      - "cgpa"
+      - "company"
+      - "email"
+      - "feedback"
+      - "first_name"
+      - "last_name"
+      - "level"
+      - "round_data"
+      - "status"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      email:
+        type: "string"
+      batch:
+        type: "number"
+      company:
+        type: "string"
+      cgpa:
+        type: "number"
+        multipleOf: 0.2
+      round_data:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            type: "string"
+      feedback:
+        type: "string"
+      status:
+        type: "string"
+      level:
+        type: "string"
+      tags:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      feedback: "feedback"
+      level: "level"
+      batch: 2018
+      last_name: "last_name"
+      company: "company"
+      cgpa: 6
+      first_name: "first_name"
+      email: "email"
+      round_data:
+        - - "round_data"
+          - "round_data"
+        - - "round_data"
+          - "round_data"
+      status: "status"
+      tags:
+        - "tags"
+        - "tags"
+  ViewExperience:
+    type: "object"
+    required:
+      - "batch"
+      - "company"
+      - "feedback"
+      - "first_name"
+      - "last_name"
+      - "level"
+      - "round_data"
+      - "status"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      batch:
+        type: "number"
+      company:
+        type: "string"
+      round_data:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            type: "string"
+      feedback:
+        type: "string"
+      status:
+        type: "string"
+      level:
+        type: "string"
+      tags:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      feedback: "feedback"
+      level: "level"
+      batch: 2018
+      last_name: "last_name"
+      company: "company"
+      first_name: "first_name"
+      round_data:
+        - - "round_data"
+          - "round_data"
+        - - "round_data"
+          - "round_data"
+      status: "status"
+      tags:
+        - "tags"
+        - "tags"
+  ViewExperiences:
+    type: "object"
+    properties:
+      experiences:
+        type: "array"
+        items:
+          $ref: "#/definitions/ViewExperience"
+    example:
+      experiences:
+        - feedback: "feedback"
+          level: "level"
+          batch: 2018
+          last_name: "last_name"
+          company: "company"
+          first_name: "first_name"
+          round_data:
+            - - "round_data"
+              - "round_data"
+            - - "round_data"
+              - "round_data"
+          status: "status"
+          tags:
+            - "tags"
+            - "tags"
+        - feedback: "feedback"
+          level: "level"
+          batch: 2018
+          last_name: "last_name"
+          company: "company"
+          first_name: "first_name"
+          round_data:
+            - - "round_data"
+              - "round_data"
+            - - "round_data"
+              - "round_data"
+          status: "status"
+          tags:
+            - "tags"
+            - "tags"
+  Tags:
+    type: "object"
+    properties:
+      tags:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      tags:
+        - "tags"
+        - "tags"
+  Approve:
+    type: "object"
+    properties:
+      admin_id:
+        type: "string"
+      blog_id:
+        type: "string"
+  Unapproved:
+    type: "object"
+    properties:
+      admin_id:
+        type: "string"
+  TopicFrequency:
+    type: "object"
+    properties:
+      topic_frequency:
+        type: "array"
+        items:
+          $ref: "#/definitions/TopicFrequencySub"
+    example:
+      topic_frequency:
+        - topic: "topic"
+          frequency: 10
+        - topic: "topic"
+          frequency: 15
+  TopicFrequencySub:
+    type: "object"
+    properties:
+      topic:
+        type: "string"
+      frequency:
+        type: "number"
+    example:
+      topic: "topic"
+      frequency: 5
+  CompanyFrequency:
+    type: "object"
+    properties:
+      company_frequency:
+        type: "array"
+        items:
+          $ref: "#/definitions/CompanyFrequencySub"
+    example:
+      company_frequency:
+        - company: "company"
+          frequency: 10
+        - company: "company"
+          frequency: 15
+  CompanyFrequencySub:
+    type: "object"
+    properties:
+      company:
+        type: "string"
+      frequency:
+        type: "number"
+    example:
+      company: "company"
+      frequency: 10
+  LevelFrequency:
+    type: "object"
+    properties:
+      level_frequency:
+        type: "array"
+        items:
+          $ref: "#/definitions/LevelFrequencySub"
+    example:
+      level_frequency:
+        - level: "level"
+          frequency: 4
+        - level: "level"
+          frequency: 6
+  LevelFrequencySub:
+    type: "object"
+    properties:
+      level:
+        type: "string"
+      frequency:
+        type: "number"
+    example:
+      level: "level"
+      frequency: 5
+  CompanyCgpa:
+    type: "object"
+    properties:
+      company_cgpa:
+        type: "array"
+        items:
+          $ref: "#/definitions/CompanyCgpaSub"
+    example:
+      company_cgpa:
+        - company_name: "company_name"
+          cgpa: 6.9
+        - company_name: "company_name"
+          cgpa: 8
+  CompanyCgpaSub:
+    type: "object"
+    properties:
+      company_name:
+        type: "string"
+      cgpa:
+        type: "number"
+        multipleOf: 0.2
+    example:
+      company_name: "company_name"
+      cgpa: 6
