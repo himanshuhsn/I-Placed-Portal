@@ -16,6 +16,13 @@ Do the following steps to run the app:
 
 `docker pull postgres`
 
+* Run Postgres Docker Image
+
+`sudo docker run --rm --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres_pass postgres` 
+
+* Also pull dpage/pgadmin4 and Run Pgadmin using
+
+`sudo docker run -p 5555:80 --name pgadmin -e PGADMIN_DEFAULT_EMAIL="example@email.com" -e PGADMIN_DEFAULT_PASSWORD="example" dpage/pgadmin4`
 
 * Run the following command to install dependencies:
 
@@ -30,6 +37,8 @@ Do the following steps to run the app:
 `python3 app.py`
 
 * Navigate to `https://127.0.0.1/5000` to view the running app.
+
+* Create an admin user manually in database to approve reviews.
 
 Contributors:
 * Swapnil Narad
